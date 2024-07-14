@@ -1,0 +1,23 @@
+{
+  "item.fieldtofork.asparagus": "Asparagus",
+  "item.fieldtofork.banana": "Banana",
+  "item.fieldtofork.chilli": "Chilli",
+  "item.fieldtofork.dragonfruit": "Dragonfruit",
+  "item.fieldtofork.eggplant": "Eggplant",
+  "item.fieldtofork.green_banana": "Green Banana",
+  "item.fieldtofork.leek": "Leek",
+  "item.fieldtofork.lychee": "Lychee",
+  "item.fieldtofork.mango": "Mango",
+  "item.fieldtofork.orange": "Orange",
+  "item.fieldtofork.passionfruit": "Passionfruit",
+  "item.fieldtofork.pear": "Pear",
+  "item.fieldtofork.pomegranate": "Pomegranate",
+  "item.fieldtofork.radish": "Radish",
+  "item.fieldtofork.red_pepper": "Red Pepper",
+  "item.fieldtofork.sweet_potato": "Sweet Potato",
+  "item.fieldtofork.yellow_pepper": "Yellow Pepper",
+  "item.fieldtofork.zucchini": "Zucchini",
+  "itemGroup.fieldtofork.blocks": "Field to Fork Blocks",
+  "itemGroup.fieldtofork.fruits": "Field to Fork Fruits",
+  "itemGroup.fieldtofork.vegetables": "Field to Fork Vegetables"
+}
