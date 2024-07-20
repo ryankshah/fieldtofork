@@ -1,6 +1,7 @@
 package com.ryankshah.fieldtofork.data.provider;
 
 import com.ryankshah.fieldtofork.Constants;
+import com.ryankshah.fieldtofork.registry.BlockRegistry;
 import com.ryankshah.fieldtofork.registry.ItemRegistry;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -16,6 +17,7 @@ public class FTFLangProvider extends LanguageProvider {
         add("itemGroup." + Constants.MOD_ID + ".blocks", "Field to Fork Blocks");
         add("itemGroup." + Constants.MOD_ID + ".fruits", "Field to Fork Fruits");
         add("itemGroup." + Constants.MOD_ID + ".vegetables", "Field to Fork Vegetables");
+        add("itemGroup." + Constants.MOD_ID + ".seeds", "Field to Fork Seeds");
 
         add(ItemRegistry.BANANA.get(), "Banana");
         add(ItemRegistry.DRAGONFRUIT.get(), "Dragonfruit");
@@ -27,8 +29,8 @@ public class FTFLangProvider extends LanguageProvider {
         add(ItemRegistry.PASSIONFRUIT.get(), "Passionfruit");
         add(ItemRegistry.PEAR.get(), "Pear");
         add(ItemRegistry.POMEGRANATE.get(), "Pomegranate");
-        add(ItemRegistry.RED_PEPPER.get(), "Red Pepper");
-        add(ItemRegistry.YELLOW_PEPPER.get(), "Yellow Pepper");
+        add(ItemRegistry.RED_PEPPER.get(), "Red Bell Pepper");
+        add(ItemRegistry.YELLOW_PEPPER.get(), "Yellow Bell Pepper");
 
         add(ItemRegistry.ASPARAGUS.get(), "Asparagus");
         add(ItemRegistry.CHILLI.get(), "Chilli");
@@ -37,14 +39,58 @@ public class FTFLangProvider extends LanguageProvider {
         add(ItemRegistry.SWEET_POTATO.get(), "Sweet Potato");
         add(ItemRegistry.ZUCCHINI.get(), "Zucchini");
 
-//        add(ItemRegistry.PINEAPPLE_BLOCK.get(), "Pineapples");
-//        add(ItemRegistry.PINEAPPLE.get(), "Pineapple");
-//        add(ItemRegistry.PINEAPPLE_SEEDS.get(), "Pineapple Seeds");
-//        add(ItemRegistry.GOLDEN_PINEAPPLE.get(), "Golden Pineapple");
-//        add(ItemRegistry.PINEAPPLE_TOP.get(), "Pineapple Top");
-//        add(ItemRegistry.PINEAPPLE_BOTTOM.get(), "Pineapple Bottom");
-//        add(ItemRegistry.PINEAPPLE_CHUNKS.get(), "Pineapple Chunks");
-//        add(ItemRegistry.PINEAPPLE_SLICE.get(), "Pineapple Slice");
-//        add(ItemRegistry.PINEAPPLE_JUICE.get(), "Pineapple Juice");
+        add(ItemRegistry.BANANA_TREE_SEEDS.get(), "Banana Tree Seeds");
+        add(ItemRegistry.DRAGONFRUIT_TREE_SEEDS.get(), "Dragonfruit Tree Seeds");
+        add(ItemRegistry.EGGPLANT_SEEDS.get(), "Eggplant Seeds");
+        add(ItemRegistry.LYCHEE_TREE_SEED.get(), "Lychee Tree Seed");
+        add(ItemRegistry.MANGO_TREE_SEED.get(), "Mango Tree Seed");
+        add(ItemRegistry.ORANGE_TREE_SEEDS.get(), "Orange Tree Seeds");
+        add(ItemRegistry.PASSIONFRUIT_SEEDS.get(), "Passionfruit Seeds");
+        add(ItemRegistry.PEAR_TREE_SEEDS.get(), "Pear Tree Seeds");
+        add(ItemRegistry.POMEGRANATE_TREE_SEEDS.get(), "Pomegranate Tree Seeds");
+        add(ItemRegistry.BELL_PEPPER_SEEDS.get(), "Bell Pepper Seeds");
+        add(ItemRegistry.ASPARAGUS_CROWNS.get(), "Asparagus Crowns");
+        add(ItemRegistry.CHILLI_SEEDS.get(), "Chilli Seeds");
+        add(ItemRegistry.LEEK_SEEDS.get(), "Leek Seeds");
+        add(ItemRegistry.RADISH_SEEDS.get(), "Radish Seeds");
+        add(ItemRegistry.SWEET_POTATO_SLIPS.get(), "Sweet Potato Slips");
+        add(ItemRegistry.ZUCCHINI_SEEDS.get(), "Zucchini Seeds");
+
+        add(BlockRegistry.PALM_LOG.get(), "Palm Log");
+        add(BlockRegistry.PALM_LEAVES.get(), "Palm Leaves");
+        add(BlockRegistry.DENSE_PALM_LEAVES.get(), "Dense Palm Leaves");
+        add(BlockRegistry.PALM_PLANKS.get(), "Palm Planks");
+        add(BlockRegistry.PALM_DOOR.get(), "Palm Door");
+        add(BlockRegistry.PALM_TRAPDOOR.get(), "Palm Trapdoor");
+        add(BlockRegistry.PALM_SLAB.get(), "Palm Slab");
+        add(BlockRegistry.PALM_STAIRS.get(), "Palm Stairs");
+        add(BlockRegistry.PALM_BUTTON.get(), "Palm Button");
+        add(BlockRegistry.PALM_FENCE.get(), "Palm Fence");
+        add(BlockRegistry.PALM_FENCE_GATE.get(), "Palm Fence Gate");
+//        add(BlockRegistry.PALM_WALL_SIGN.get(), "Palm Wall Sign");
+        add(BlockRegistry.PALM_HANGING_SIGN.get(), "Palm Hanging Sign");
+        add(BlockRegistry.PALM_SIGN.get(), "Palm Sign");
+        add(BlockRegistry.PALM_PRESSURE_PLATE.get(), "Palm Pressure Plate");
+
+        add(BlockRegistry.BANANA_TREE_LOG.get(), "Banana Log");
+        add(BlockRegistry.BANANA_TREE_PLANKS.get(), "Banana Planks");
+
+        add(BlockRegistry.DRAGONFRUIT_TREE_LOG.get(), "Dragonfruit Log");
+        add(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get(), "Dragonfruit Planks");
+
+        add(BlockRegistry.LYCHEE_TREE_LOG.get(), "Lychee Log");
+        add(BlockRegistry.LYCHEE_TREE_PLANKS.get(), "Lychee Planks");
+
+        add(BlockRegistry.MANGO_LOG.get(), "Mango Log");
+        add(BlockRegistry.MANGO_PLANKS.get(), "Mango Planks");
+
+        add(BlockRegistry.ORANGE_LOG.get(), "Orange Log");
+        add(BlockRegistry.ORANGE_PLANKS.get(), "Orange Planks");
+
+        add(BlockRegistry.PEAR_LOG.get(), "Pear Log");
+        add(BlockRegistry.PEAR_PLANKS.get(), "Pear Planks");
+
+        add(BlockRegistry.POMEGRANATE_LOG.get(), "Pomegranate Log");
+        add(BlockRegistry.POMEGRANATE_PLANKS.get(), "Pomegranate Planks");
     }
 }

@@ -11,6 +11,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.function.Supplier;
 
@@ -38,6 +40,11 @@ public class FabricPlatformHelper implements Services {
         Supplier<T> blockSupplier = registerSupplier(BuiltInRegistries.BLOCK, id, block);
         registerBlockItem(id, () -> new BlockItem(block.get(), new Item.Properties()));
         return blockSupplier;
+    }
+
+    @Override
+    public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String id, Supplier<BlockEntityType<T>> blockEntityType) {
+        return registerSupplier(BuiltInRegistries.BLOCK_ENTITY_TYPE, id, blockEntityType);
     }
 
     @Override

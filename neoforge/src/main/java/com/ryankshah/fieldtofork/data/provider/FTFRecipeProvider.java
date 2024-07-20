@@ -1,13 +1,22 @@
 package com.ryankshah.fieldtofork.data.provider;
 
+import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import com.ryankshah.fieldtofork.registry.ItemRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * TODO:
+ * - add recipes for palm blocks
+ */
 public class FTFRecipeProvider extends RecipeProvider implements IConditionBuilder
 {
     public FTFRecipeProvider(PackOutput p_248933_, CompletableFuture<HolderLookup.Provider> lookupProvider) {
@@ -16,12 +25,8 @@ public class FTFRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput pWriter) {
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_SEEDS.get(), 1)).requires(ItemRegistry.PINEAPPLE.get()).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_JUICE.get(), 1)).requires(ItemRegistry.PINEAPPLE.get()).requires(Items.GLASS_BOTTLE).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_CHUNKS.get(), 1)).requires(ItemRegistry.PINEAPPLE_BOTTOM.get()).requires(Items.STICK).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_SLICE.get(), 1)).requires(ItemRegistry.PINEAPPLE_BOTTOM.get()).requires(Items.FLINT).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_SLICE.get(), 1)).requires(ItemRegistry.PINEAPPLE_TOP.get()).requires(Items.STICK).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
-//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_SLICE.get(), 1)).requires(ItemRegistry.PINEAPPLE_BOTTOM.get()).requires(Items.STICK).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
+//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(BlockRegistry.PALM_PLANKS.get(), 4)).requires(BlockRegistry.PALM_LOG.get()).unlockedBy("has_palm_log", has(BlockRegistry.PALM_LOG.get())).save(pWriter);
+
 //        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_BOTTOM.get(), 1))
 //                .pattern(" a ")
 //                .pattern(" b ")

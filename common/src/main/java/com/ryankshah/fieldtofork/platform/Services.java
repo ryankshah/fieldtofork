@@ -6,6 +6,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.ServiceLoader;
 import java.util.function.Supplier;
@@ -19,6 +21,7 @@ public interface Services
     boolean isDevelopmentEnvironment();
 
     <T extends Block> Supplier<T> registerBlock(String id, Supplier<T> block);
+    <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String id, Supplier<BlockEntityType<T>> blockEntityType);
     <T extends BlockItem> Supplier<T> registerBlockItem(String id, Supplier<T> block);
     <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item);
     <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab);

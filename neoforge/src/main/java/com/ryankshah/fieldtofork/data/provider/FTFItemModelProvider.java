@@ -34,5 +34,22 @@ public class FTFItemModelProvider extends ItemModelProvider
         basicItem(ItemRegistry.RADISH.get());
         basicItem(ItemRegistry.SWEET_POTATO.get());
         basicItem(ItemRegistry.ZUCCHINI.get());
+
+        basicItem(ItemRegistry.BANANA_TREE_SEEDS.get());
+        basicItem(ItemRegistry.DRAGONFRUIT_TREE_SEEDS.get());
+        basicItem(ItemRegistry.EGGPLANT_SEEDS.get());
+        basicItem(ItemRegistry.LYCHEE_TREE_SEED.get());
+        basicItem(ItemRegistry.MANGO_TREE_SEED.get());
+        basicItem(ItemRegistry.ORANGE_TREE_SEEDS.get());
+        basicItem(ItemRegistry.PASSIONFRUIT_SEEDS.get());
+        basicItem(ItemRegistry.PEAR_TREE_SEEDS.get());
+        basicItem(ItemRegistry.POMEGRANATE_TREE_SEEDS.get());
+        basicItem(ItemRegistry.BELL_PEPPER_SEEDS.get());
+        basicItem(ItemRegistry.ASPARAGUS_CROWNS.get());
+        basicItem(ItemRegistry.CHILLI_SEEDS.get());
+        basicItem(ItemRegistry.LEEK_SEEDS.get());
+        basicItem(ItemRegistry.RADISH_SEEDS.get());
+        basicItem(ItemRegistry.SWEET_POTATO_SLIPS.get());
+        basicItem(ItemRegistry.ZUCCHINI_SEEDS.get());
     }
 }

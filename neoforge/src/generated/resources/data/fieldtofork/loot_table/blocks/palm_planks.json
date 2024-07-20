@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "fieldtofork:palm_planks"
         }
       ],
       "rolls": 1.0

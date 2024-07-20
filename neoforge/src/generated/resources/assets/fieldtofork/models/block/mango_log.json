@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "fieldtofork:block/mango_log_top",
+    "side": "fieldtofork:block/mango_log"
+  }
+}

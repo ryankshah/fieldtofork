@@ -8,10 +8,11 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.function.Supplier;
 
@@ -37,9 +38,12 @@ public class NeoForgePlatformHelper implements Services {
 
     @Override
     public <T extends Block> Supplier<T> registerBlock(String id, Supplier<T> block) {
-        DeferredHolder<Block, T> blockSupplier = FieldToForkNeo.BLOCKS.register(id, block);
-        FieldToForkNeo.ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties()));
-        return blockSupplier;
+        return FieldToForkNeo.BLOCKS.register(id, block);
+    }
+
+    @Override
+    public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String id, Supplier<BlockEntityType<T>> blockEntityType) {
+        return FieldToForkNeo.BLOCK_ENTITIES.register(id, blockEntityType);
     }
 
     @Override

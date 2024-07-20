@@ -28,12 +28,43 @@ public class FTFBlockLootTables extends BlockLootSubProvider
         //TODO: Add a chance to get golden pineapple
 
         dropSelf(BlockRegistry.PALM_LOG.get());
+//        add(BlockRegistry.PALM_LEAVES.get(), this::createLeavesDrops);
+        dropSelf(BlockRegistry.PALM_LEAVES.get());
+        dropSelf(BlockRegistry.DENSE_PALM_LEAVES.get());
         dropSelf(BlockRegistry.PALM_TRAPDOOR.get());
         dropSelf(BlockRegistry.PALM_PLANKS.get());
-        dropSelf(BlockRegistry.PALM_DOOR.get());
-
         add(BlockRegistry.PALM_DOOR.get(), this::createDoorTable);
-//        createDoorTable(BlockRegistry.PALM_DOOR.get());
+        add(BlockRegistry.PALM_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockRegistry.PALM_STAIRS.get());
+        dropSelf(BlockRegistry.PALM_FENCE.get());
+        dropSelf(BlockRegistry.PALM_FENCE_GATE.get());
+        dropSelf(BlockRegistry.PALM_PRESSURE_PLATE.get());
+        dropSelf(BlockRegistry.PALM_BUTTON.get());
+        dropSelf(BlockRegistry.PALM_SIGN.get());
+        dropOther(BlockRegistry.PALM_WALL_SIGN.get(), BlockRegistry.PALM_SIGN.get());
+        dropSelf(BlockRegistry.PALM_HANGING_SIGN.get());
+        dropOther(BlockRegistry.PALM_WALL_HANGING_SIGN.get(), BlockRegistry.PALM_HANGING_SIGN.get());
+
+        dropSelf(BlockRegistry.BANANA_TREE_LOG.get());
+        dropSelf(BlockRegistry.BANANA_TREE_PLANKS.get());
+
+        dropSelf(BlockRegistry.DRAGONFRUIT_TREE_LOG.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get());
+
+        dropSelf(BlockRegistry.LYCHEE_TREE_LOG.get());
+        dropSelf(BlockRegistry.LYCHEE_TREE_PLANKS.get());
+
+        dropSelf(BlockRegistry.MANGO_LOG.get());
+        dropSelf(BlockRegistry.MANGO_PLANKS.get());
+
+        dropSelf(BlockRegistry.ORANGE_LOG.get());
+        dropSelf(BlockRegistry.ORANGE_PLANKS.get());
+
+        dropSelf(BlockRegistry.PEAR_LOG.get());
+        dropSelf(BlockRegistry.PEAR_PLANKS.get());
+
+        dropSelf(BlockRegistry.POMEGRANATE_LOG.get());
+        dropSelf(BlockRegistry.POMEGRANATE_PLANKS.get());
     }
 
     @Override
