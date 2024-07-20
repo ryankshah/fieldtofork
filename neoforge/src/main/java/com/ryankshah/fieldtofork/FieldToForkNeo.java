@@ -3,6 +3,8 @@ package com.ryankshah.fieldtofork;
 
 import com.mojang.serialization.MapCodec;
 import com.ryankshah.fieldtofork.data.provider.*;
+import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -11,8 +13,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.loot.AddTableLootModifier;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
@@ -43,7 +48,21 @@ public class FieldToForkNeo
 
         FieldToForkCommon.init();
 
+//        eventBus.addListener(FieldToForkNeo::clientSetup);
+        eventBus.addListener(FieldToForkNeo::commonSetup);
         eventBus.addListener(FieldToForkNeo::gatherData);
+    }
+
+//    private static void clientSetup(final FMLClientSetupEvent event) {
+//        BlockEntityRenderers.register(BlockRegistry.PALM_SIGN.get(), SignRenderer::new);
+//        BlockEntityRenderers.register(BlockRegistry.PALM_HANGING_SIGN.get(), HangingSignRenderer::new);
+//        event.enqueueWork(() -> {
+//            Sheets.addWoodType(TEST_WOOD_TYPE);
+//        });
+//    }
+
+    private static void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> WoodType.register(BlockRegistry.PALM));
     }
 
     public static void gatherData(GatherDataEvent event) {

@@ -1,6 +1,9 @@
 package com.ryankshah.fieldtofork.client;
 
 import com.ryankshah.fieldtofork.Constants;
+import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -12,7 +15,10 @@ public final class FTFNeoForgeClient
 {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        FTFCommonClient.clientSetup();
+        event.enqueueWork(() -> {
+            Sheets.addWoodType(BlockRegistry.PALM);
+            FTFCommonClient.clientSetup();
+        });
     }
 
     @SubscribeEvent

@@ -33,14 +33,14 @@ public class BlockRegistry
     public static final BlockSetType TYPE_PEAR = BlockSetType.register(new BlockSetType("pear"));
     public static final BlockSetType TYPE_POMEGRANATE = BlockSetType.register(new BlockSetType("pomegranate"));
 
-    public static final WoodType PALM = WoodType.register(new WoodType("palm", TYPE_PALM));
-    public static final WoodType BANANA = WoodType.register(new WoodType("palm", TYPE_BANANA));
-    public static final WoodType DRAGONFRUIT = WoodType.register(new WoodType("palm", TYPE_DRAGONFRUIT));
-    public static final WoodType LYCHEE = WoodType.register(new WoodType("palm", TYPE_LYCHEE));
-    public static final WoodType MANGO = WoodType.register(new WoodType("palm", TYPE_MANGO));
-    public static final WoodType ORANGE = WoodType.register(new WoodType("palm", TYPE_ORANGE));
-    public static final WoodType PEAR = WoodType.register(new WoodType("palm", TYPE_PEAR));
-    public static final WoodType POMEGRANATE = WoodType.register(new WoodType("palm", TYPE_POMEGRANATE));
+    public static final WoodType PALM = new WoodType("palm", TYPE_PALM);
+    public static final WoodType BANANA = new WoodType("palm", TYPE_BANANA);
+    public static final WoodType DRAGONFRUIT = new WoodType("palm", TYPE_DRAGONFRUIT);
+    public static final WoodType LYCHEE = new WoodType("palm", TYPE_LYCHEE);
+    public static final WoodType MANGO = new WoodType("palm", TYPE_MANGO);
+    public static final WoodType ORANGE = new WoodType("palm", TYPE_ORANGE);
+    public static final WoodType PEAR = new WoodType("palm", TYPE_PEAR);
+    public static final WoodType POMEGRANATE = new WoodType("palm", TYPE_POMEGRANATE);
 
 //    Sheets.addWoodType(PALM);
 
