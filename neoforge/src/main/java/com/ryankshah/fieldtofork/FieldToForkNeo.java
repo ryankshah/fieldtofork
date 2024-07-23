@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -33,8 +34,8 @@ public class FieldToForkNeo
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, Constants.MOD_ID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
-
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIER_SERIALIZERS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
+
     public static DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<AddTableLootModifier>> ADD_TABLE_LOOT_MODIFIER_TYPE;
 
     public FieldToForkNeo(IEventBus eventBus) {
@@ -46,11 +47,11 @@ public class FieldToForkNeo
         ITEMS.register(eventBus);
         CREATIVE_TABS.register(eventBus);
 
-        FieldToForkCommon.init();
-
 //        eventBus.addListener(FieldToForkNeo::clientSetup);
         eventBus.addListener(FieldToForkNeo::commonSetup);
         eventBus.addListener(FieldToForkNeo::gatherData);
+
+        FieldToForkCommon.init();
     }
 
 //    private static void clientSetup(final FMLClientSetupEvent event) {
@@ -62,7 +63,9 @@ public class FieldToForkNeo
 //    }
 
     private static void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> WoodType.register(BlockRegistry.PALM));
+//        event.enqueueWork(() -> {
+//            WoodType.register(BlockRegistry.PALM);
+//        });
     }
 
     public static void gatherData(GatherDataEvent event) {

@@ -27,6 +27,7 @@ public class FTFBlockLootTables extends BlockLootSubProvider
 //                .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(0.125f, 1.0F)).add(LootItem.lootTableItem(ItemRegistry.GOLDEN_PINEAPPLE.get()))));
         //TODO: Add a chance to get golden pineapple
 
+        dropSelf(BlockRegistry.PALM_SAPLING.get());
         dropSelf(BlockRegistry.PALM_LOG.get());
 //        add(BlockRegistry.PALM_LEAVES.get(), this::createLeavesDrops);
         dropSelf(BlockRegistry.PALM_LEAVES.get());
@@ -47,9 +48,35 @@ public class FTFBlockLootTables extends BlockLootSubProvider
 
         dropSelf(BlockRegistry.BANANA_TREE_LOG.get());
         dropSelf(BlockRegistry.BANANA_TREE_PLANKS.get());
+        dropSelf(BlockRegistry.BANANA_LEAVES.get());
+        dropSelf(BlockRegistry.BANANA_TRAPDOOR.get());
+        add(BlockRegistry.BANANA_DOOR.get(), this::createDoorTable);
+        add(BlockRegistry.BANANA_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockRegistry.BANANA_STAIRS.get());
+        dropSelf(BlockRegistry.BANANA_FENCE.get());
+        dropSelf(BlockRegistry.BANANA_FENCE_GATE.get());
+        dropSelf(BlockRegistry.BANANA_PRESSURE_PLATE.get());
+        dropSelf(BlockRegistry.BANANA_BUTTON.get());
+        dropSelf(BlockRegistry.BANANA_SIGN.get());
+        dropOther(BlockRegistry.BANANA_WALL_SIGN.get(), BlockRegistry.BANANA_SIGN.get());
+        dropSelf(BlockRegistry.BANANA_HANGING_SIGN.get());
+        dropOther(BlockRegistry.BANANA_WALL_HANGING_SIGN.get(), BlockRegistry.BANANA_HANGING_SIGN.get());
 
         dropSelf(BlockRegistry.DRAGONFRUIT_TREE_LOG.get());
         dropSelf(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_LEAVES.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_TRAPDOOR.get());
+        add(BlockRegistry.DRAGONFRUIT_DOOR.get(), this::createDoorTable);
+        add(BlockRegistry.DRAGONFRUIT_SLAB.get(), this::createSlabItemTable);
+        dropSelf(BlockRegistry.DRAGONFRUIT_STAIRS.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_FENCE.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_FENCE_GATE.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_PRESSURE_PLATE.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_BUTTON.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_SIGN.get());
+        dropOther(BlockRegistry.DRAGONFRUIT_WALL_SIGN.get(), BlockRegistry.DRAGONFRUIT_SIGN.get());
+        dropSelf(BlockRegistry.DRAGONFRUIT_HANGING_SIGN.get());
+        dropOther(BlockRegistry.DRAGONFRUIT_WALL_HANGING_SIGN.get(), BlockRegistry.DRAGONFRUIT_HANGING_SIGN.get());
 
         dropSelf(BlockRegistry.LYCHEE_TREE_LOG.get());
         dropSelf(BlockRegistry.LYCHEE_TREE_PLANKS.get());

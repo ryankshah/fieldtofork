@@ -24,6 +24,8 @@ public class FTFBlockStateProvider extends BlockStateProvider
 
     @Override
     protected void registerStatesAndModels() {
+        saplingBlock(BlockRegistry.PALM_SAPLING.get());
+        itemModels().basicItem(BlockRegistry.PALM_SAPLING.get().asItem());
         doorBlockWithRenderType(BlockRegistry.PALM_DOOR.get(),
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/palm_door_bottom"),
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/palm_door_top"), ResourceLocation.withDefaultNamespace("cutout"));
@@ -60,10 +62,68 @@ public class FTFBlockStateProvider extends BlockStateProvider
         logBlock(BlockRegistry.BANANA_TREE_LOG.get());
         simpleBlockItem(BlockRegistry.BANANA_TREE_LOG.get(), models().getExistingFile(modLoc("banana_tree_log")));
         simpleBlockWithItem(BlockRegistry.BANANA_TREE_PLANKS.get(), cubeAll(BlockRegistry.BANANA_TREE_PLANKS.get()));
+        //        saplingBlock(BlockRegistry.BANANA_SAPLING.get());
+        doorBlockWithRenderType(BlockRegistry.BANANA_DOOR.get(),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_door_bottom"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_door_top"), ResourceLocation.withDefaultNamespace("cutout"));
+        itemModels().basicItem(BlockRegistry.BANANA_DOOR.get().asItem());
+        trapdoorBlockWithRenderType(BlockRegistry.BANANA_TRAPDOOR.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_trapdoor"), true, ResourceLocation.withDefaultNamespace("cutout"));
+        simpleBlockItem(BlockRegistry.BANANA_TRAPDOOR.get(), models().getExistingFile(modLoc("banana_trapdoor_bottom")));
+        simpleBlockWithItem(BlockRegistry.BANANA_LEAVES.get(), cubeAll(BlockRegistry.BANANA_LEAVES.get()));// models().withExistingParent("block/banana_leaves", "item/generated").texture("layer0", "block/banana_leaves"));
+        slabBlock(BlockRegistry.BANANA_SLAB.get(),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"));
+        simpleBlockItem(BlockRegistry.BANANA_SLAB.get(), models().getExistingFile(modLoc("banana_slab")));
+        stairsBlock(BlockRegistry.BANANA_STAIRS.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"));
+        simpleBlockItem(BlockRegistry.BANANA_STAIRS.get(), models().getExistingFile(modLoc("banana_stairs")));
+        fenceBlock(BlockRegistry.BANANA_FENCE.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"));
+        simpleBlockItem(BlockRegistry.BANANA_FENCE.get(), models().fenceInventory("banana_fence", modLoc("block/banana_tree_planks")));
+        fenceGateBlock(BlockRegistry.BANANA_FENCE_GATE.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"));
+//        simpleBlockItem(BlockRegistry.BANANA_FENCE_GATE.get(), models().getExistingFile(modLoc("banana_fence_gate_wall")));
+        simpleBlockItem(BlockRegistry.BANANA_FENCE_GATE.get(), models().fenceGate("banana_fence_gate", modLoc("block/banana_tree_planks")));
+        signBlock(BlockRegistry.BANANA_SIGN.get(), BlockRegistry.BANANA_WALL_SIGN.get(), blockTexture(BlockRegistry.BANANA_TREE_PLANKS.get()));
+//        simpleBlockItem(BlockRegistry.BANANA_SIGN.get(), models().sign("banana_sign", modLoc("block/banana_tree_planks")));
+        itemModels().basicItem(BlockRegistry.BANANA_SIGN.get().asItem());
+        hangingSignBlock(BlockRegistry.BANANA_HANGING_SIGN.get(), BlockRegistry.BANANA_WALL_HANGING_SIGN.get(), blockTexture(BlockRegistry.BANANA_TREE_PLANKS.get()));
+//        simpleBlockItem(BlockRegistry.BANANA_SIGN.get(), models().sign("banana_sign", modLoc("block/banana_tree_planks")));
+        itemModels().basicItem(BlockRegistry.BANANA_HANGING_SIGN.get().asItem());
+        buttonBlock(BlockRegistry.BANANA_BUTTON.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"));
+        simpleBlockItem(BlockRegistry.BANANA_BUTTON.get(), models().buttonInventory("banana_button", modLoc("block/banana_tree_planks")));
+        pressurePlateBlock(BlockRegistry.BANANA_PRESSURE_PLATE.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/banana_tree_planks"));
+        simpleBlockItem(BlockRegistry.BANANA_PRESSURE_PLATE.get(), models().getExistingFile(modLoc("banana_pressure_plate")));
 
         logBlock(BlockRegistry.DRAGONFRUIT_TREE_LOG.get());
         simpleBlockItem(BlockRegistry.DRAGONFRUIT_TREE_LOG.get(), models().getExistingFile(modLoc("dragonfruit_tree_log")));
         simpleBlockWithItem(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get(), cubeAll(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get()));
+        //        saplingBlock(BlockRegistry.DRAGONFRUIT_SAPLING.get());
+        doorBlockWithRenderType(BlockRegistry.DRAGONFRUIT_DOOR.get(),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_door_bottom"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_door_top"), ResourceLocation.withDefaultNamespace("cutout"));
+        itemModels().basicItem(BlockRegistry.DRAGONFRUIT_DOOR.get().asItem());
+        trapdoorBlockWithRenderType(BlockRegistry.DRAGONFRUIT_TRAPDOOR.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_trapdoor"), true, ResourceLocation.withDefaultNamespace("cutout"));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_TRAPDOOR.get(), models().getExistingFile(modLoc("dragonfruit_trapdoor_bottom")));
+        simpleBlockWithItem(BlockRegistry.DRAGONFRUIT_LEAVES.get(), cubeAll(BlockRegistry.DRAGONFRUIT_LEAVES.get()));// models().withExistingParent("block/dragonfruit_leaves", "item/generated").texture("layer0", "block/dragonfruit_leaves"));
+        slabBlock(BlockRegistry.DRAGONFRUIT_SLAB.get(),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_SLAB.get(), models().getExistingFile(modLoc("dragonfruit_slab")));
+        stairsBlock(BlockRegistry.DRAGONFRUIT_STAIRS.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_STAIRS.get(), models().getExistingFile(modLoc("dragonfruit_stairs")));
+        fenceBlock(BlockRegistry.DRAGONFRUIT_FENCE.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_FENCE.get(), models().fenceInventory("dragonfruit_fence", modLoc("block/dragonfruit_tree_planks")));
+        fenceGateBlock(BlockRegistry.DRAGONFRUIT_FENCE_GATE.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"));
+//        simpleBlockItem(BlockRegistry.DRAGONFRUIT_FENCE_GATE.get(), models().getExistingFile(modLoc("dragonfruit_fence_gate_wall")));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_FENCE_GATE.get(), models().fenceGate("dragonfruit_fence_gate", modLoc("block/dragonfruit_tree_planks")));
+        signBlock(BlockRegistry.DRAGONFRUIT_SIGN.get(), BlockRegistry.DRAGONFRUIT_WALL_SIGN.get(), blockTexture(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get()));
+//        simpleBlockItem(BlockRegistry.DRAGONFRUIT_SIGN.get(), models().sign("dragonfruit_sign", modLoc("block/dragonfruit_tree_planks")));
+        itemModels().basicItem(BlockRegistry.DRAGONFRUIT_SIGN.get().asItem());
+        hangingSignBlock(BlockRegistry.DRAGONFRUIT_HANGING_SIGN.get(), BlockRegistry.DRAGONFRUIT_WALL_HANGING_SIGN.get(), blockTexture(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get()));
+//        simpleBlockItem(BlockRegistry.DRAGONFRUIT_SIGN.get(), models().sign("dragonfruit_sign", modLoc("block/dragonfruit_tree_planks")));
+        itemModels().basicItem(BlockRegistry.DRAGONFRUIT_HANGING_SIGN.get().asItem());
+        buttonBlock(BlockRegistry.DRAGONFRUIT_BUTTON.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_BUTTON.get(), models().buttonInventory("dragonfruit_button", modLoc("block/dragonfruit_tree_planks")));
+        pressurePlateBlock(BlockRegistry.DRAGONFRUIT_PRESSURE_PLATE.get(), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/dragonfruit_tree_planks"));
+        simpleBlockItem(BlockRegistry.DRAGONFRUIT_PRESSURE_PLATE.get(), models().getExistingFile(modLoc("dragonfruit_pressure_plate")));
 
         logBlock(BlockRegistry.LYCHEE_TREE_LOG.get());
         simpleBlockItem(BlockRegistry.LYCHEE_TREE_LOG.get(), models().getExistingFile(modLoc("lychee_tree_log")));
@@ -118,6 +178,11 @@ public class FTFBlockStateProvider extends BlockStateProvider
     public void hangingSignBlock(CeilingHangingSignBlock signBlock, WallHangingSignBlock wallSignBlock, ModelFile sign) {
         this.simpleBlock(signBlock, (ModelFile)sign);
         this.simpleBlock(wallSignBlock, (ModelFile)sign);
+    }
+
+    private void saplingBlock(Block block) {
+        simpleBlock(block,
+                models().cross(this.name(block), blockTexture(block)).renderType("cutout"));
     }
 
     private String name(Block block) {

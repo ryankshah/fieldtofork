@@ -67,16 +67,37 @@ public class FTFLangProvider extends LanguageProvider {
         add(BlockRegistry.PALM_BUTTON.get(), "Palm Button");
         add(BlockRegistry.PALM_FENCE.get(), "Palm Fence");
         add(BlockRegistry.PALM_FENCE_GATE.get(), "Palm Fence Gate");
-//        add(BlockRegistry.PALM_WALL_SIGN.get(), "Palm Wall Sign");
         add(BlockRegistry.PALM_HANGING_SIGN.get(), "Palm Hanging Sign");
         add(BlockRegistry.PALM_SIGN.get(), "Palm Sign");
         add(BlockRegistry.PALM_PRESSURE_PLATE.get(), "Palm Pressure Plate");
 
         add(BlockRegistry.BANANA_TREE_LOG.get(), "Banana Log");
         add(BlockRegistry.BANANA_TREE_PLANKS.get(), "Banana Planks");
+        add(BlockRegistry.BANANA_LEAVES.get(), "Banana Leaves");
+        add(BlockRegistry.BANANA_DOOR.get(), "Banana Door");
+        add(BlockRegistry.BANANA_TRAPDOOR.get(), "Banana Trapdoor");
+        add(BlockRegistry.BANANA_SLAB.get(), "Banana Slab");
+        add(BlockRegistry.BANANA_STAIRS.get(), "Banana Stairs");
+        add(BlockRegistry.BANANA_BUTTON.get(), "Banana Button");
+        add(BlockRegistry.BANANA_FENCE.get(), "Banana Fence");
+        add(BlockRegistry.BANANA_FENCE_GATE.get(), "Banana Fence Gate");
+        add(BlockRegistry.BANANA_HANGING_SIGN.get(), "Banana Hanging Sign");
+        add(BlockRegistry.BANANA_SIGN.get(), "Banana Sign");
+        add(BlockRegistry.BANANA_PRESSURE_PLATE.get(), "Banana Pressure Plate");
 
         add(BlockRegistry.DRAGONFRUIT_TREE_LOG.get(), "Dragonfruit Log");
         add(BlockRegistry.DRAGONFRUIT_TREE_PLANKS.get(), "Dragonfruit Planks");
+        add(BlockRegistry.DRAGONFRUIT_LEAVES.get(), "Dragonfruit Leaves");
+        add(BlockRegistry.DRAGONFRUIT_DOOR.get(), "Dragonfruit Door");
+        add(BlockRegistry.DRAGONFRUIT_TRAPDOOR.get(), "Dragonfruit Trapdoor");
+        add(BlockRegistry.DRAGONFRUIT_SLAB.get(), "Dragonfruit Slab");
+        add(BlockRegistry.DRAGONFRUIT_STAIRS.get(), "Dragonfruit Stairs");
+        add(BlockRegistry.DRAGONFRUIT_BUTTON.get(), "Dragonfruit Button");
+        add(BlockRegistry.DRAGONFRUIT_FENCE.get(), "Dragonfruit Fence");
+        add(BlockRegistry.DRAGONFRUIT_FENCE_GATE.get(), "Dragonfruit Fence Gate");
+        add(BlockRegistry.DRAGONFRUIT_HANGING_SIGN.get(), "Dragonfruit Hanging Sign");
+        add(BlockRegistry.DRAGONFRUIT_SIGN.get(), "Dragonfruit Sign");
+        add(BlockRegistry.DRAGONFRUIT_PRESSURE_PLATE.get(), "Dragonfruit Pressure Plate");
 
         add(BlockRegistry.LYCHEE_TREE_LOG.get(), "Lychee Log");
         add(BlockRegistry.LYCHEE_TREE_PLANKS.get(), "Lychee Planks");

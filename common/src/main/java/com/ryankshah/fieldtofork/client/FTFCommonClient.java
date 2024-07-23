@@ -1,8 +1,6 @@
 package com.ryankshah.fieldtofork.client;
 
 import com.ryankshah.fieldtofork.registry.BlockEntityRegistry;
-import com.ryankshah.fieldtofork.registry.BlockRegistry;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -17,8 +15,8 @@ import java.util.function.BiConsumer;
 public class FTFCommonClient
 {
     public static void clientSetup() {
-        Sheets.createSignMaterial(BlockRegistry.PALM);
-        Sheets.createHangingSignMaterial(BlockRegistry.PALM);
+//        Sheets.createSignMaterial(BlockRegistry.PALM);
+//        Sheets.createHangingSignMaterial(BlockRegistry.PALM);
     }
 
     public static void registerRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> entityRenderers,

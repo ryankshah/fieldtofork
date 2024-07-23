@@ -2,6 +2,8 @@ package com.ryankshah.fieldtofork.registry;
 
 import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.Constants;
+import com.ryankshah.fieldtofork.registration.RegistrationProvider;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -15,17 +17,7 @@ public class ItemRegistry
 {
     public static void init() {}
 
-//    public static final Supplier<BlockItem> PINEAPPLE_BLOCK = registerItem("pineapple_block", () -> new BlockItem(BlockRegistry.PINEAPPLE_BLOCK.get(), new Item.Properties()));
-
-//    public static final Supplier<Item> PINEAPPLE = registerItem("pineapple", () -> new Item(new Item.Properties()));
-//    public static final Supplier<Item> PINEAPPLE_SEEDS = registerItem("pineapple_seeds", () -> new ItemNameBlockItem(BlockRegistry.PINEAPPLE_BLOCK.get(), new Item.Properties()));
-//    public static final Supplier<Item> PINEAPPLE_TOP = registerItem("pineapple_top", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
-//    public static final Supplier<Item> PINEAPPLE_BOTTOM = registerItem("pineapple_bottom", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
-//    public static final Supplier<Item> PINEAPPLE_CHUNKS = registerItem("pineapple_chunks", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
-//    public static final Supplier<Item> PINEAPPLE_SLICE = registerItem("pineapple_slice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
-//    public static final Supplier<Item> PINEAPPLE_JUICE = registerItem("pineapple_juice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.3F).build())));
-//    public static final Supplier<Item> GOLDEN_PINEAPPLE = registerItem("golden_pineapple", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1.8F).effect(new MobEffectInstance(MobEffects.REGENERATION, 100, 1), 1.0F).effect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build())));
-
+    public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
 
     //Fruits
     public static final Supplier<Item> BANANA = registerItem("banana", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1.4F).build())));
@@ -65,8 +57,12 @@ public class ItemRegistry
     public static final Supplier<Item> ZUCCHINI = registerItem("zucchini", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1.3F).build())));
     public static final Supplier<Item> ZUCCHINI_SEEDS = registerItem("zucchini_seeds", () -> new Item(new Item.Properties())); // () -> new ItemNameBlockItem(BlockRegistry.ZUCCHINI_BLOCK, new Item.Properties()));
 
+//    private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
+//        return FieldToForkCommon.COMMON_PLATFORM.registerItem(id, item);
+//    }
+
     private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
-        return FieldToForkCommon.COMMON_PLATFORM.registerItem(id, item);
+        return ITEMS.register(id, item);
     }
 
     public static final Supplier<CreativeModeTab> FRUITS_TAB = FieldToForkCommon.COMMON_PLATFORM.registerCreativeModeTab("fieldtofork_fruits", () -> FieldToForkCommon.COMMON_PLATFORM.newCreativeTabBuilder()
