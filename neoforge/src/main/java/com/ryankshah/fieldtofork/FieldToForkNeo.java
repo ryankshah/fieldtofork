@@ -27,6 +27,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.Set;
+
 @Mod(Constants.MOD_ID)
 public class FieldToForkNeo
 {
@@ -47,11 +49,11 @@ public class FieldToForkNeo
         ITEMS.register(eventBus);
         CREATIVE_TABS.register(eventBus);
 
+        FieldToForkCommon.init();
+
 //        eventBus.addListener(FieldToForkNeo::clientSetup);
         eventBus.addListener(FieldToForkNeo::commonSetup);
         eventBus.addListener(FieldToForkNeo::gatherData);
-
-        FieldToForkCommon.init();
     }
 
 //    private static void clientSetup(final FMLClientSetupEvent event) {
@@ -81,6 +83,7 @@ public class FieldToForkNeo
             generator.addProvider(true, new FTFLootTables(output, event.getLookupProvider()));
             generator.addProvider(true, new FTFRecipeProvider(output, event.getLookupProvider()));
             generator.addProvider(true, new FTFLootModifierProvider(output, event.getLookupProvider(), Constants.MOD_ID));
+            generator.addProvider(true, new FTFWorldGenProvider(output, event.getLookupProvider()));
         } catch (RuntimeException e) {
             Constants.LOG.error("Failed to generate data", e);
         }

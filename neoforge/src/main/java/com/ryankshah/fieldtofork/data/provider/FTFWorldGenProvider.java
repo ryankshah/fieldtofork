@@ -3,7 +3,9 @@ package com.ryankshah.fieldtofork.data.provider;
 import com.ryankshah.fieldtofork.Constants;
 import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import com.ryankshah.fieldtofork.worldgen.PalmTreeFeature;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
@@ -28,6 +30,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FossilFeature;
+import net.minecraft.world.level.levelgen.feature.FossilFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
@@ -53,8 +57,8 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
     private static final ResourceKey<BiomeModifier> OVERWORLD = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overworld_ftf_spawns"));
 
 
-    public FTFWorldGenProvider(PackOutput output, CompletableFuture<RegistrySetBuilder.PatchedRegistries> registries, Set<String> modIds) {
-        super(output, registries, modIds);
+    public FTFWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider, BUILDER, Set.of(Constants.MOD_ID));
     }
 
     public static void spawns(BootstrapContext<BiomeModifier> context) {
@@ -65,14 +69,14 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
 
     public static void configuredFeature(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         context.register(FieldToForkCommon.PALM_TREE_CF_RK, new ConfiguredFeature<>(
-                Feature.TREE,
+                new PalmTreeFeature(TreeConfiguration.CODEC),
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(BlockRegistry.PALM_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
-                        new ForkingTrunkPlacer(5, 2, 2),
+                        new ForkingTrunkPlacer(5, 2, 4),
                         BlockStateProvider.simple(BlockRegistry.PALM_LEAVES.get()),
                         new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
 //                    new TwoLayersFeatureSize(1, 0, 2)
-                        new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
                 ).build()
         ));
     }
@@ -86,7 +90,7 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                                         .build())),
                                 InSquarePlacement.spread(),
                                 SurfaceWaterDepthFilter.forMaxDepth(0),
-                                HeightmapPlacement.onHeightmap(Heightmap.Types.OCEAN_FLOOR),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
                                 BiomeFilter.biome(),
                                 BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.PALM_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
                         )

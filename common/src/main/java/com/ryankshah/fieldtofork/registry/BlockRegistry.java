@@ -70,7 +70,7 @@ public class BlockRegistry
     public static final Supplier<Block> PALM_PLANKS = registerBlock("palm_planks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_WOOD)));
     public static final Supplier<Block> PALM_LEAVES = registerBlock("palm_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_LEAVES)));
     public static final Supplier<Block> DENSE_PALM_LEAVES = registerBlock("dense_palm_leaves", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)));
-    public static final Supplier<SaplingBlock> PALM_SAPLING = registerBlock("palm_sapling", () -> new SaplingBlock(PALM_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING)));
+    public static final Supplier<SaplingBlock> PALM_SAPLING = registerBlock("palm_sapling", () -> new SaplingBlock(PALM_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
     public static final Supplier<FTFDoorBlock> PALM_DOOR = registerBlock("palm_door", () -> new FTFDoorBlock(TYPE_PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_WOOD)));
     public static final Supplier<FTFTrapdoorBlock> PALM_TRAPDOOR = registerBlock("palm_trapdoor", () -> new FTFTrapdoorBlock(TYPE_PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_WOOD)));
     public static final Supplier<SlabBlock> PALM_SLAB = registerBlock("palm_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SLAB)));

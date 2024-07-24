@@ -4,6 +4,7 @@ import com.ryankshah.fieldtofork.platform.Services;
 import com.ryankshah.fieldtofork.registry.BlockEntityRegistry;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
 import com.ryankshah.fieldtofork.registry.ItemRegistry;
+import com.ryankshah.fieldtofork.registry.WorldGenRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -24,6 +25,6 @@ public class FieldToForkCommon
         BlockRegistry.init();
         BlockEntityRegistry.init();
         ItemRegistry.init();
-//        FTFConfiguredFeatures.init();
+        WorldGenRegistry.init();
     }
 }
