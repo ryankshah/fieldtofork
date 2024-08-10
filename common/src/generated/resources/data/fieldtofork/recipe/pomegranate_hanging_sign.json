@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "a": {
+      "item": "fieldtofork:pomegranate_planks"
+    },
+    "b": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    "b b",
+    "aaa",
+    "aaa"
+  ],
+  "result": {
+    "count": 3,
+    "id": "fieldtofork:pomegranate_hanging_sign"
+  }
+}

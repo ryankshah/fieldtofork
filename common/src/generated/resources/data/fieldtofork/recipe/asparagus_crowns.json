@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fieldtofork:asparagus"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:asparagus_crowns"
+  }
+}

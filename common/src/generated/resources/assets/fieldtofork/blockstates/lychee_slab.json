@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/lychee_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/lychee_tree_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/lychee_slab_top"
+    }
+  }
+}

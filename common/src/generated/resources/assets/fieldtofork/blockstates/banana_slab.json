@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/banana_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/banana_tree_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/banana_slab_top"
+    }
+  }
+}

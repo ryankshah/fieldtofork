@@ -3,7 +3,7 @@ package com.ryankshah.fieldtofork.data.provider;
 import com.ryankshah.fieldtofork.Constants;
 import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
-import com.ryankshah.fieldtofork.worldgen.PalmTreeFeature;
+import com.ryankshah.fieldtofork.registry.WorldGenRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -24,14 +24,13 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FossilFeature;
-import net.minecraft.world.level.levelgen.feature.FossilFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
@@ -50,26 +49,26 @@ import java.util.concurrent.CompletableFuture;
 public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
 {
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FTFWorldGenProvider::spawns)
             .add(Registries.CONFIGURED_FEATURE, FTFWorldGenProvider::configuredFeature)
             .add(Registries.PLACED_FEATURE, FTFWorldGenProvider::placedFeatures)
             .add(Registries.BIOME, FTFWorldGenProvider::biomes);
-    private static final ResourceKey<BiomeModifier> OVERWORLD = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overworld_ftf_spawns"));
+//            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FTFWorldGenProvider::spawns);
 
+    private static final ResourceKey<BiomeModifier> OVERWORLD = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overworld_ftf_spawns"));
 
     public FTFWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider, BUILDER, Set.of(Constants.MOD_ID));
     }
 
-    public static void spawns(BootstrapContext<BiomeModifier> context) {
+//    public static void spawns(BootstrapContext<BiomeModifier> context) {
 //        context.register(OVERWORLD,
 //                new BiomeModifiers.AddSpawnsBiomeModifier(context.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_OVERWORLD), CommonSpawning.OVERWORLD_SPAWNS)
 //        );
-    }
+//    }
 
     public static void configuredFeature(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        context.register(FieldToForkCommon.PALM_TREE_CF_RK, new ConfiguredFeature<>(
-                new PalmTreeFeature(TreeConfiguration.CODEC),
+        context.register(WorldGenRegistry.PALM_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.PALM_TREE_F.get(),
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(BlockRegistry.PALM_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
                         new ForkingTrunkPlacer(5, 2, 4),
@@ -79,14 +78,91 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
                 ).build()
         ));
+        context.register(WorldGenRegistry.BANANA_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.BANANA_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.BANANA_TREE_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.BANANA_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.DRAGONFRUIT_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.DRAGONFRUIT_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.DRAGONFRUIT_TREE_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.DRAGONFRUIT_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.LYCHEE_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.LYCHEE_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.LYCHEE_TREE_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.LYCHEE_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.MANGO_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.MANGO_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.MANGO_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.MANGO_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.ORANGE_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.ORANGE_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.ORANGE_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.ORANGE_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.PEAR_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.PEAR_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.PEAR_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.PEAR_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.POMEGRANATE_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.POMEGRANATE_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.POMEGRANATE_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.POMEGRANATE_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
     }
 
     public static void placedFeatures(BootstrapContext<PlacedFeature> context) {
-        context.register(FieldToForkCommon.PALM_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(FieldToForkCommon.PALM_TREE_CF_RK).get(),
+        context.register(WorldGenRegistry.PALM_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.PALM_TREE_CF_RK).get(),
                         List.of(
                                 CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
-                                        .add(ConstantInt.of(10), 9)
-                                        .add(ConstantInt.of(11), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
                                         .build())),
                                 InSquarePlacement.spread(),
                                 SurfaceWaterDepthFilter.forMaxDepth(0),
@@ -96,62 +172,162 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         )
                 )
         );
+        context.register(WorldGenRegistry.BANANA_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.BANANA_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.BANANA_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
+        context.register(WorldGenRegistry.DRAGONFRUIT_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.DRAGONFRUIT_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.DRAGONFRUIT_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
+        context.register(WorldGenRegistry.LYCHEE_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.LYCHEE_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.LYCHEE_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
+        context.register(WorldGenRegistry.MANGO_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.MANGO_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.MANGO_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
+        context.register(WorldGenRegistry.ORANGE_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.ORANGE_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.ORANGE_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
+        context.register(WorldGenRegistry.PEAR_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.PEAR_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.PEAR_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
+        context.register(WorldGenRegistry.POMEGRANATE_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.POMEGRANATE_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.POMEGRANATE_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
     }
 
     public static void biomes(BootstrapContext<Biome> context) {
-//        MobSpawnSettings.Builder sOFBuilder = new MobSpawnSettings.Builder();
-//        context.register(CommonClass.SPOOKY_OAK_FOREST,
-//                new Biome.BiomeBuilder()
-//                        .specialEffects(
-//                                new BiomeSpecialEffects.Builder()
-//                                        .skyColor(11826993)
-//                                        .fogColor(14126598)
-//                                        .waterColor(11948056)
-//                                        .waterFogColor(11948056)
-//                                        .grassColorOverride(15237409)
-//                                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.DARK_FOREST)
-//                                        .build()
-//                        )
-//                        .hasPrecipitation(true)
-//                        .temperature(0.7F)
-//                        .downfall(0.8F)
-//                        .mobSpawnSettings(
-//                                sOFBuilder.build()
-//                        )
-//                        .generationSettings(
-//                                baseSettings(context)
-//                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(CommonClass.SPOOKY_OAK_TREE).get()).build()
-//                        ).build()
-//        );
-//        MobSpawnSettings.Builder pFBuilder = new MobSpawnSettings.Builder();
-//        CommonSpawning.WHITE_PINE_FOREST_SPAWNS.forEach(spawnerData -> pFBuilder.addSpawn(MobCategory.MONSTER, spawnerData));
-//        context.register(CommonClass.CHRISTMAS_FOREST,
-//                new Biome.BiomeBuilder()
-//                        .specialEffects(
-//                                new BiomeSpecialEffects.Builder()
-//                                        .skyColor(calculateSkyColor(-0.5f))
-//                                        .fogColor(12638463)
-//                                        .waterColor(4020182)
-//                                        .waterFogColor(329011)
-//                                        .grassColorOverride(1668352)
-//                                        .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-//                                        .build()
-//                        )
-//                        .hasPrecipitation(true)
-//                        .temperature(-0.5F)
-//                        .downfall(1.0F)
-//                        .mobSpawnSettings(
-//                                pFBuilder.build()
-//                        )
-//                        .generationSettings(
-//                                baseSettings(context)
-//                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(CommonClass.WHITE_PINE_TREE).get())
-//                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(CommonClass.DECORATED_WHITE_PINE_TREE).get())
-//                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(CommonClass.DECORATED_MEGA_WHITE_PINE_TREE).get())
-//                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(CommonClass.MEGA_WHITE_PINE_TREE).get())
-//                                        .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
-//                        ).build()
-//        );
+        MobSpawnSettings.Builder pbBuilder = new MobSpawnSettings.Builder();
+        context.register(FieldToForkCommon.PALM_BEACH,
+                new Biome.BiomeBuilder()
+                        .specialEffects(
+                                new BiomeSpecialEffects.Builder()
+                                        .skyColor(7254527)
+                                        .fogColor(12638463)
+                                        .waterColor(4159204)
+                                        .waterFogColor(329011)
+                                        .build()
+                        )
+                        .hasPrecipitation(false)
+                        .temperature(2F)
+                        .downfall(0F)
+                        .mobSpawnSettings(
+                                pbBuilder.build()
+                        )
+                        .generationSettings(
+                                palmBeachSettings(context)
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.PALM_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
+                        ).build()
+        );
+
+        MobSpawnSettings.Builder ffBuilder = new MobSpawnSettings.Builder();
+        context.register(FieldToForkCommon.FRUIT_FOREST,
+                new Biome.BiomeBuilder()
+                        .specialEffects(
+                                new BiomeSpecialEffects.Builder()
+                                        .skyColor(8103167)
+                                        .fogColor(12638463)
+                                        .waterColor(6141935)
+                                        .waterFogColor(6141935)
+                                        .grassColorOverride(11983713)
+                                        .foliageColorOverride(11983713)
+                                        .build()
+                        )
+                        .hasPrecipitation(true)
+                        .temperature(0.5F)
+                        .downfall(0.8F)
+                        .mobSpawnSettings(
+                                ffBuilder.build()
+                        )
+                        .generationSettings(
+                                baseSettings(context)
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.BANANA_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.DRAGONFRUIT_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.LYCHEE_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.MANGO_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.ORANGE_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.PEAR_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.POMEGRANATE_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
+                        ).build()
+        );
     }
 
     protected static int calculateSkyColor(float pTemperature) {
@@ -203,5 +379,43 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(VegetationPlacements.RED_MUSHROOM_NORMAL).get())
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(VegetationPlacements.PATCH_SUGAR_CANE).get())
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(VegetationPlacements.PATCH_PUMPKIN).get());
+    }
+
+    public static BiomeGenerationSettings.PlainBuilder palmBeachSettings(BootstrapContext<Biome> context) {
+        return new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER))
+                .addFeature(GenerationStep.Decoration.LAKES, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.LAKE_LAVA_UNDERGROUND).get())
+                .addFeature(GenerationStep.Decoration.LAKES, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.LAKE_LAVA_SURFACE).get())
+                .addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, context.lookup(Registries.PLACED_FEATURE).get(CavePlacements.AMETHYST_GEODE).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_DIRT).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_GRAVEL).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_GRANITE_UPPER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_GRANITE_LOWER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_DIORITE_UPPER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_DIORITE_LOWER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_ANDESITE_UPPER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_ANDESITE_LOWER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_TUFF).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_COAL_UPPER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_COAL_LOWER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_IRON_UPPER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_IRON_MIDDLE).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_IRON_SMALL).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_GOLD).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_GOLD_LOWER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_REDSTONE).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_REDSTONE_LOWER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_DIAMOND).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_DIAMOND_LARGE).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_DIAMOND_BURIED).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_LAPIS).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_LAPIS_BURIED).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(OrePlacements.ORE_COPPER).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(CavePlacements.UNDERWATER_MAGMA).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.DISK_SAND).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.DISK_CLAY).get())
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.DISK_GRAVEL).get())
+                .addFeature(GenerationStep.Decoration.FLUID_SPRINGS, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.SPRING_WATER).get())
+                .addFeature(GenerationStep.Decoration.FLUID_SPRINGS, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.SPRING_LAVA).get())
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(VegetationPlacements.PATCH_GRASS_BADLANDS).get());
     }
 }

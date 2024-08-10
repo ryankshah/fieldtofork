@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_goat_leg": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fieldtofork:goat_leg"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:roast_goat_leg_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_goat_leg"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:roast_goat_leg_from_smoking"
+    ]
+  }
+}

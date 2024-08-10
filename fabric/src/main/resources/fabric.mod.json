@@ -17,6 +17,12 @@
     "entrypoints": {
         "main": [
           "com.ryankshah.fieldtofork.FieldToForkFabric"
+        ],
+        "client": [
+            "com.ryankshah.fieldtofork.FieldToForkFabricClient"
+        ],
+        "terrablender": [
+            "com.ryankshah.fieldtofork.TerraBlenderSetup"
         ]
     },
     "depends": {
@@ -27,6 +33,7 @@
     },
     "suggests": {
         "another-mod": "*"
-    }
+    },
+    "accessWidener" : "${mod_id}.accesswidener"
 }
   

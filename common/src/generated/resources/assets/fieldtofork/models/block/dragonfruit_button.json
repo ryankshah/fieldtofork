@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "fieldtofork:block/dragonfruit_tree_planks"
+  }
+}

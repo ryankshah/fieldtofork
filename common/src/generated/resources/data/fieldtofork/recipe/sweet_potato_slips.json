@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fieldtofork:sweet_potato"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:sweet_potato_slips"
+  }
+}

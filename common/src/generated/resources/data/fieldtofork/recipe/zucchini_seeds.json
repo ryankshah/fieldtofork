@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fieldtofork:zucchini"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "fieldtofork:zucchini_seeds"
+  }
+}

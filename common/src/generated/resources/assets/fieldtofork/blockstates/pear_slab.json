@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/pear_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/pear_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/pear_slab_top"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/mulberry_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/mulberry_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/mulberry_slab_top"
+    }
+  }
+}

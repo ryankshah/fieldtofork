@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fieldtofork:ginger"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "fieldtofork:ginger_root_slip"
+  }
+}

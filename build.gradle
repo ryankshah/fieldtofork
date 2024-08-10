@@ -4,6 +4,8 @@ plugins {
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '0.1.110' apply false
     id 'com.matyrobbrt.mc.registrationutils' version '1.21.0-0.2.1'
+//    // Required for NeoGradle
+//    id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.7"
 }
 
 registrationUtils {
@@ -12,5 +14,22 @@ registrationUtils {
         fabric { type 'fabric' } // The fabric project
         neoforge { type 'neoforge' } // The neoforge project
         common { type 'common' } // The common project
+    }
+}
+
+repositories {
+    maven {
+        url = "https://jm.gserv.me/repository/maven-public/"
+    }
+    maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net"
+    }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
     }
 }

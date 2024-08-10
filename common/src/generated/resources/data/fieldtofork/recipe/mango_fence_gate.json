@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "a": {
+      "item": "fieldtofork:mango_planks"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "bab",
+    "bab"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fieldtofork:mango_fence_gate"
+  }
+}

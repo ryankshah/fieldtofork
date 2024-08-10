@@ -1,7 +1,15 @@
 package com.ryankshah.fieldtofork.platform;
 
 import com.ryankshah.fieldtofork.Constants;
+import com.ryankshah.fieldtofork.gui.menu.ChurnMenu;
+import com.ryankshah.fieldtofork.gui.menu.SilkwormHabitatMenu;
 import com.ryankshah.fieldtofork.platform.services.IPlatformHelper;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -15,6 +23,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.ServiceLoader;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface Services
@@ -30,6 +39,11 @@ public interface Services
     <T extends BlockItem> Supplier<T> registerBlockItem(String id, Supplier<T> block);
     <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item);
     <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab);
+
+    MenuType<ChurnMenu> registerChurnMenu();
+    MenuType<SilkwormHabitatMenu> registerSilkwormHabitatMenu();
+
+    void openMenu(ServerPlayer player, MenuProvider provider, Consumer<FriendlyByteBuf> buf);
 
     CreativeModeTab.Builder newCreativeTabBuilder();
 

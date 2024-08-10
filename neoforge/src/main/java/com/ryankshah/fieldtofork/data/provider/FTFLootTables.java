@@ -23,7 +23,8 @@ public class FTFLootTables extends LootTableProvider
     public FTFLootTables(PackOutput p_254123_, CompletableFuture<HolderLookup.Provider> pRegistries) {
         super(p_254123_, Set.of(), List.of(
                 new SubProviderEntry(FTFBlockLootTables::new, LootContextParamSets.BLOCK),
-                new SubProviderEntry(FTFLootTableProvider::new, LootContextParamSets.CHEST)
+                new SubProviderEntry(FTFLootTableProvider::new, LootContextParamSets.CHEST),
+                new SubProviderEntry(FTFEntityLootProvider::new, LootContextParamSets.ENTITY)
         ), pRegistries);
     }
 

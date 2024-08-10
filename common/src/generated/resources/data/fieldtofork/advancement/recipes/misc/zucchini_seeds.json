@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fieldtofork:zucchini_seeds"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_zucchini": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fieldtofork:zucchini"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_zucchini"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fieldtofork:zucchini_seeds"
+    ]
+  }
+}

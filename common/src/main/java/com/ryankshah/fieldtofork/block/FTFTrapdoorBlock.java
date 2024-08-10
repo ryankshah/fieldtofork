@@ -58,7 +58,7 @@ public class FTFTrapdoorBlock extends TrapDoorBlock
     }
 
     public FTFTrapdoorBlock(BlockSetType p_272964_, BlockBehaviour.Properties p_273079_) {
-        super(p_272964_, p_273079_.sound(p_272964_.soundType()));
+        super(p_272964_, p_273079_.sound(p_272964_.soundType()).noOcclusion());
         this.type = p_272964_;
         this.registerDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(OPEN, false)).setValue(HALF, Half.BOTTOM)).setValue(POWERED, false)).setValue(WATERLOGGED, false));
     }

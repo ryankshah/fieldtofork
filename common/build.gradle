@@ -3,6 +3,33 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+repositories {
+    maven {
+        url = "https://jm.gserv.me/repository/maven-public/"
+    }
+    maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net"
+    }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+}
+
 neoForge {
     neoFormVersion = neo_form_version
     // Automatically enable AccessTransformers if the file exists
@@ -16,11 +43,17 @@ neoForge {
     }
 }
 
+//sourceSets.main.resources { srcDir '../common/src/generated/resources' }
+
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     // fabric and neoforge both bundle mixinextras, so it is safe to use it in common
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
+
+    implementation 'mysticdrew:common-networking-common:1.0.11-1.21'
+    implementation "com.github.glitchfiend:TerraBlender-common:${terrablender_version}"
+    implementation "software.bernie.geckolib:geckolib-common-${minecraft_version}:${geckolib_version}"
 }
 
 configurations {
@@ -39,3 +72,10 @@ artifacts {
     commonResources sourceSets.main.resources.sourceDirectories.singleFile
 }
 
+//artifacts {
+//    commonJava sourceSets.main.java.sourceDirectories.singleFile
+////    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+//    for (def dir : sourceSets.main.resources.sourceDirectories.files) {
+//        commonResources dir
+//    }
+//}

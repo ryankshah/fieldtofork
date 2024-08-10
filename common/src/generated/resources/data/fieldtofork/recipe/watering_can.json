@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "a  ",
+    "aaa",
+    " aa"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:watering_can"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "fieldtofork:orange_planks"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:orange_button"
+  }
+}

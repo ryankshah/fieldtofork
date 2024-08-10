@@ -3,7 +3,13 @@ package com.ryankshah.fieldtofork;
 
 import com.mojang.serialization.MapCodec;
 import com.ryankshah.fieldtofork.data.provider.*;
+import com.ryankshah.fieldtofork.gui.screen.ChurnScreen;
+import com.ryankshah.fieldtofork.gui.screen.SilkwormHabitatScreen;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import com.ryankshah.fieldtofork.registry.EntityRegistry;
+import com.ryankshah.fieldtofork.registry.MenuRegistry;
+import com.ryankshah.fieldtofork.registry.RecipeRegistry;
+import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -16,13 +22,17 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.loot.AddTableLootModifier;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -49,11 +59,15 @@ public class FieldToForkNeo
         ITEMS.register(eventBus);
         CREATIVE_TABS.register(eventBus);
 
+        eventBus.<EntityAttributeCreationEvent>addListener(event -> EntityRegistry.registerEntityAttributes(event::put));
+
         FieldToForkCommon.init();
 
 //        eventBus.addListener(FieldToForkNeo::clientSetup);
         eventBus.addListener(FieldToForkNeo::commonSetup);
         eventBus.addListener(FieldToForkNeo::gatherData);
+        eventBus.addListener(FieldToForkNeo::registerScreens);
+        eventBus.addListener(FieldToForkNeo::registerRecipeBookCategories);
     }
 
 //    private static void clientSetup(final FMLClientSetupEvent event) {
@@ -64,10 +78,13 @@ public class FieldToForkNeo
 //        });
 //    }
 
+    private static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(MenuRegistry.CHURN_MENU.get(), ChurnScreen::new);
+        event.register(MenuRegistry.SILKWORM_HABITAT.get(), SilkwormHabitatScreen::new);
+    }
+
     private static void commonSetup(final FMLCommonSetupEvent event) {
-//        event.enqueueWork(() -> {
-//            WoodType.register(BlockRegistry.PALM);
-//        });
+        event.enqueueWork(FieldToForkCommon::setupTerraBlender);
     }
 
     public static void gatherData(GatherDataEvent event) {
@@ -79,15 +96,24 @@ public class FieldToForkNeo
             generator.addProvider(true, new FTFLangProvider(output, Constants.MOD_ID, "en_us"));
             generator.addProvider(true,  new FTFItemModelProvider(output, existingFileHelper));
             generator.addProvider(true, new FTFBlockStateProvider(output, Constants.MOD_ID, existingFileHelper));
-            generator.addProvider(true, new FTFBlockTagsProvider(output, event.getLookupProvider(), Constants.MOD_ID, existingFileHelper));
+            FTFBlockTagsProvider blockTags = new FTFBlockTagsProvider(output, event.getLookupProvider(), Constants.MOD_ID, existingFileHelper);
+            generator.addProvider(true, blockTags);
+            generator.addProvider(true, new FTFItemTagsProvider(output, event.getLookupProvider(), blockTags.contentsGetter()));
             generator.addProvider(true, new FTFLootTables(output, event.getLookupProvider()));
             generator.addProvider(true, new FTFRecipeProvider(output, event.getLookupProvider()));
+            generator.addProvider(true, new ChurnRecipeProvider(output, event.getLookupProvider()));
+            generator.addProvider(true, new SilkwormHabitatRecipeProvider(output, event.getLookupProvider()));
             generator.addProvider(true, new FTFLootModifierProvider(output, event.getLookupProvider(), Constants.MOD_ID));
             generator.addProvider(true, new FTFWorldGenProvider(output, event.getLookupProvider()));
         } catch (RuntimeException e) {
             Constants.LOG.error("Failed to generate data", e);
         }
     }
+
+    private static void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
+        event.registerRecipeCategoryFinder(RecipeRegistry.CHURN_RECIPE_TYPE.get(), holder -> RecipeBookCategories.UNKNOWN);
+    }
+
 //    @SubscribeEvent
 //    public static void buildContents(BuildCreativeModeTabContentsEvent event) {
 //        // Is this the tab we want to add to?

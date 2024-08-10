@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "fieldtofork:banana_tree_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "fieldtofork:banana_tree_planks"
+  }
+}

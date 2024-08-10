@@ -1,6 +1,14 @@
 package com.ryankshah.fieldtofork.platform;
 
 import com.ryankshah.fieldtofork.FieldToForkNeo;
+import com.ryankshah.fieldtofork.gui.menu.ChurnMenu;
+import com.ryankshah.fieldtofork.gui.menu.SilkwormHabitatMenu;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -11,7 +19,10 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.network.IContainerFactory;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class NeoForgePlatformHelper implements Services {
@@ -57,6 +68,20 @@ public class NeoForgePlatformHelper implements Services {
     @Override
     public <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab) {
         return FieldToForkNeo.CREATIVE_TABS.register(id, tab);
+    }
+
+    @Override
+    public MenuType<ChurnMenu> registerChurnMenu() {
+        return IMenuTypeExtension.create(ChurnMenu::new);
+    }
+    @Override
+    public MenuType<SilkwormHabitatMenu> registerSilkwormHabitatMenu() {
+        return IMenuTypeExtension.create(SilkwormHabitatMenu::new);
+    }
+
+    @Override
+    public void openMenu(ServerPlayer serverPlayer, MenuProvider provider, Consumer<FriendlyByteBuf> buf) {
+        serverPlayer.openMenu(provider);
     }
 
     @Override

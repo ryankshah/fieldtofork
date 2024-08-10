@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "fieldtofork:block/pomegranate_planks",
+    "side": "fieldtofork:block/pomegranate_planks",
+    "top": "fieldtofork:block/pomegranate_planks"
+  }
+}

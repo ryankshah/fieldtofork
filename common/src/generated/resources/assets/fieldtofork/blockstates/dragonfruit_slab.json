@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/dragonfruit_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/dragonfruit_tree_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/dragonfruit_slab_top"
+    }
+  }
+}

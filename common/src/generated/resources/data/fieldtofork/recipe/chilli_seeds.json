@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fieldtofork:chilli"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "fieldtofork:chilli_seeds"
+  }
+}

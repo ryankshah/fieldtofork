@@ -1,0 +1,22 @@
+{
+  "entries": [
+    "fieldtofork:salmon",
+    "fieldtofork:chests/village/village_plains_house",
+    "fieldtofork:chests/village/village_desert_house",
+    "fieldtofork:goat",
+    "fieldtofork:chests/woodland_mansion",
+    "fieldtofork:chests/stronghold_corridor",
+    "fieldtofork:chests/buried_treasure",
+    "fieldtofork:chests/shipwreck_supply",
+    "fieldtofork:chests/village/village_snowy_house",
+    "fieldtofork:horse",
+    "fieldtofork:chests/village/village_savanna_house",
+    "fieldtofork:chests/pillager_outpost",
+    "fieldtofork:chests/abandoned_mineshaft",
+    "fieldtofork:chests/simple_dungeon",
+    "fieldtofork:chests/village/village_taiga_house",
+    "fieldtofork:chests/desert_pyramid",
+    "fieldtofork:chests/jungle_temple"
+  ],
+  "replace": false
+}

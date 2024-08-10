@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "fieldtofork:bell_peppers"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "fieldtofork:bell_pepper_seeds"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "h": {
+      "item": "minecraft:hay_block"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " h ",
+    "shs",
+    " s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:villager_scarecrow"
+  }
+}

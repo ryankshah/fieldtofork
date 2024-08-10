@@ -51,7 +51,7 @@ public class FTFDoorBlock extends DoorBlock {
     }
 
     public FTFDoorBlock(BlockSetType p_272854_, BlockBehaviour.Properties p_273303_) {
-        super(p_272854_, p_273303_.sound(p_272854_.soundType()));
+        super(p_272854_, p_273303_.sound(p_272854_.soundType()).noOcclusion());
         this.type = p_272854_;
         this.registerDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(OPEN, false)).setValue(HINGE, DoorHingeSide.LEFT)).setValue(POWERED, false)).setValue(HALF, DoubleBlockHalf.LOWER));
     }

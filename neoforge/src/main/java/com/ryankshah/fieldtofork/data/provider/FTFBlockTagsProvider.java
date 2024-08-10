@@ -18,13 +18,5 @@ public class FTFBlockTagsProvider extends BlockTagsProvider
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        //ores
-//        tag(TagsInit.BlockTagsInit.CORUNDUM_ORE_TAG).add(BlockInit.CORUNDUM_ORE.get());
-//        tag(TagsInit.BlockTagsInit.EBONY_ORE_TAG).add(BlockInit.EBONY_ORE.get());
-//        tag(TagsInit.BlockTagsInit.MALACHITE_ORE_TAG).add(BlockInit.MALACHITE_ORE.get());
-//        tag(TagsInit.BlockTagsInit.MOONSTONE_ORE_TAG).add(BlockInit.MOONSTONE_ORE.get());
-//        tag(TagsInit.BlockTagsInit.ORICHALCUM_ORE_TAG).add(BlockInit.ORICHALCUM_ORE.get());
-//        tag(TagsInit.BlockTagsInit.QUICKSILVER_ORE_TAG).add(BlockInit.QUICKSILVER_ORE.get());
-//        tag(TagsInit.BlockTagsInit.SILVER_ORE_TAG).add(BlockInit.SILVER_ORE.get());
     }
 }

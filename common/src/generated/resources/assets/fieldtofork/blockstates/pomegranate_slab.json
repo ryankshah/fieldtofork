@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/pomegranate_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/pomegranate_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/pomegranate_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/crop",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crop": "fieldtofork:block/crops/durum_wheat_stage7",
+    "particle": "fieldtofork:block/crops/durum_wheat_stage7"
+  }
+}

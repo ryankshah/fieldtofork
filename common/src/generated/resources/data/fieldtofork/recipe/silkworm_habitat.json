@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "a": {
+      "tag": "minecraft:planks"
+    },
+    "c": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "aaa",
+    "aca",
+    "aaa"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:silkworm_habitat"
+  }
+}

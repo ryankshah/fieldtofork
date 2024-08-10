@@ -1,13 +1,28 @@
 package com.ryankshah.fieldtofork.platform;
 
 import com.ryankshah.fieldtofork.Constants;
+import com.ryankshah.fieldtofork.block.churn.recipe.ChurnRecipe;
+import com.ryankshah.fieldtofork.block.silkworm_habitat.recipe.SilkwormHabitatRecipe;
+import com.ryankshah.fieldtofork.gui.menu.ChurnMenu;
+import com.ryankshah.fieldtofork.gui.menu.SilkwormHabitatMenu;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -18,6 +33,8 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
+import javax.annotation.Nullable;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class FabricPlatformHelper implements Services {
@@ -80,6 +97,47 @@ public class FabricPlatformHelper implements Services {
     @Override
     public <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab) {
         return registerSupplier(BuiltInRegistries.CREATIVE_MODE_TAB, id, tab);
+    }
+
+    @Override
+    public MenuType<ChurnMenu> registerChurnMenu() {
+        return new ExtendedScreenHandlerType<>(ChurnMenu::new, ChurnRecipe.STREAM_CODEC);
+    }
+
+    @Override
+    public MenuType<SilkwormHabitatMenu> registerSilkwormHabitatMenu() {
+        return new ExtendedScreenHandlerType<>(SilkwormHabitatMenu::new, SilkwormHabitatRecipe.STREAM_CODEC);
+    }
+
+    @Override
+    public void openMenu(ServerPlayer player, MenuProvider vanillaProvider, Consumer<FriendlyByteBuf> bufConsumer) {
+        final ExtendedScreenHandlerFactory extendedProvider = new ExtendedScreenHandlerFactory() {
+
+            @Override
+            public Object getScreenOpeningData(ServerPlayer player) {
+                return bufConsumer;
+            }
+
+            @Nullable
+            @Override
+            public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+
+                return vanillaProvider.createMenu(i, inventory, player);
+            }
+
+            @Override
+            public Component getDisplayName() {
+                return vanillaProvider.getDisplayName();
+            }
+
+//            @Override
+//            public void writeScreenOpeningData(ServerPlayer player, FriendlyByteBuf buf) {
+//
+//                bufConsumer.accept(buf);
+//            }
+        };
+
+        player.openMenu(extendedProvider);
     }
 
     @Override

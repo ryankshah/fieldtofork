@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fieldtofork:block/mango_slab"
+    },
+    "type=double": {
+      "model": "fieldtofork:block/mango_planks"
+    },
+    "type=top": {
+      "model": "fieldtofork:block/mango_slab_top"
+    }
+  }
+}

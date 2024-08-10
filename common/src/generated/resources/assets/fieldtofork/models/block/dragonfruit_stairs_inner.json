@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "fieldtofork:block/dragonfruit_tree_planks",
+    "side": "fieldtofork:block/dragonfruit_tree_planks",
+    "top": "fieldtofork:block/dragonfruit_tree_planks"
+  }
+}

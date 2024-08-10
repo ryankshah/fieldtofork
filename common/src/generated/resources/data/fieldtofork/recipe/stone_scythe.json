@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "minecraft:stone"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " ab",
+    "a b",
+    "a b"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:stone_scythe"
+  }
+}

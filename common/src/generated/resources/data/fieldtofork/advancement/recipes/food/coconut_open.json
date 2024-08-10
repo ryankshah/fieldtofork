@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_coconut": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fieldtofork:coconut"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fieldtofork:coconut_open"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_coconut"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fieldtofork:coconut_open"
+    ]
+  }
+}

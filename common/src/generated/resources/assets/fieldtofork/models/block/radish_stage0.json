@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/crop",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crop": "fieldtofork:block/crops/radish_stage0",
+    "particle": "fieldtofork:block/crops/radish_stage0"
+  }
+}
