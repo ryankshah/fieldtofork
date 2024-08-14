@@ -42,12 +42,12 @@ public class SilkwormHabitatRecipeProvider implements DataProvider, IConditionBu
 
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
         pRecipeOutput.accept(
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, BuiltInRegistries.ITEM.getKey(ItemRegistry.BUTTER.get()).getPath()),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, BuiltInRegistries.ITEM.getKey(ItemRegistry.UNWOVEN_SILK.get()).getPath()),
                 new SilkwormHabitatRecipe(
                         "habitat",
                             CookingBookCategory.MISC,
                             Ingredient.of(new ItemStack(BlockRegistry.MULBERRY_LEAVES.get(), 1)),
-                            new ItemStack(ItemRegistry.UNWOVEN_SILK.get(), 1), // TODO: Replace with Silk
+                            new ItemStack(ItemRegistry.UNWOVEN_SILK.get(), 1),
                             0.35f,
                         200
                 ),

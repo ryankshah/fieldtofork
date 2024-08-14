@@ -24,7 +24,7 @@ public class RecipeRegistry
     public static final Supplier<RecipeSerializer<ChurnRecipe>> CHURN_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("churn", ChurnRecipe.Serializer::new);
 
     public static final Supplier<RecipeType<SilkwormHabitatRecipe>> SILKWORM_HABITAT = RECIPE_TYPES.register("silkworm_habitat", SilkwormHabitatRecipeType::new);
-    public static final Supplier<RecipeSerializer<SilkwormHabitatRecipe>> SILKWORM_HABITAT_SERIALIZER = RECIPE_SERIALIZERS.register("silkworm_habitat", () -> new SimpleCookingSerializer(SilkwormHabitatRecipe::new, 200));
+    public static final Supplier<RecipeSerializer<SilkwormHabitatRecipe>> SILKWORM_HABITAT_SERIALIZER = RECIPE_SERIALIZERS.register("silkworm_habitat", () -> new SimpleCookingSerializer<>(SilkwormHabitatRecipe::new, 200));
 
     static class ChurnRecipeType implements RecipeType<ChurnRecipe> {
         @Override

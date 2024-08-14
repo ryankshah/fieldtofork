@@ -39,7 +39,7 @@ public class MulberryTreeFeature extends Feature<TreeConfiguration>
         final StructureTemplate template = manager.getOrCreate(Util.getRandom(TREES, context.random()));
 
         // position for tree
-        final BlockPos offset = new BlockPos(-3, 0, -3);
+        final BlockPos offset = new BlockPos(0, 0, 0); // TODO: Check offsets?
         BlockPos pos = context.origin().offset(offset.rotate(rotation));
 
         // placement settings

@@ -112,6 +112,7 @@ public class FieldToForkNeo
 
     private static void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
         event.registerRecipeCategoryFinder(RecipeRegistry.CHURN_RECIPE_TYPE.get(), holder -> RecipeBookCategories.UNKNOWN);
+        event.registerRecipeCategoryFinder(RecipeRegistry.SILKWORM_HABITAT.get(), holder -> RecipeBookCategories.UNKNOWN);
     }
 
 //    @SubscribeEvent

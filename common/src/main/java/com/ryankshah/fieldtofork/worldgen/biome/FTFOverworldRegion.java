@@ -42,8 +42,17 @@ public class FTFOverworldRegion extends Region
                 .weirdness(ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING)
                 .build().forEach(point -> builder.add(point, FieldToForkCommon.FRUIT_FOREST));
 
-        ModifiedVanillaOverworldBuilder builder1 = new ModifiedVanillaOverworldBuilder();
-        addModifiedVanillaOverworldBiomes(mapper, b -> builder1.build());
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.span(ParameterUtils.Temperature.NEUTRAL, ParameterUtils.Temperature.WARM))
+                .humidity(ParameterUtils.Humidity.span(ParameterUtils.Humidity.NEUTRAL, ParameterUtils.Humidity.WET))
+                .continentalness(ParameterUtils.Continentalness.NEAR_INLAND)
+                .erosion(ParameterUtils.Erosion.EROSION_0, ParameterUtils.Erosion.EROSION_2)
+                .depth(ParameterUtils.Depth.SURFACE, ParameterUtils.Depth.SURFACE)
+                .weirdness(ParameterUtils.Weirdness.MID_SLICE_NORMAL_ASCENDING, ParameterUtils.Weirdness.MID_SLICE_NORMAL_DESCENDING)
+                .build().forEach(point -> builder.add(point, FieldToForkCommon.MULBERRY_GROVE));
+
+//        ModifiedVanillaOverworldBuilder builder1 = new ModifiedVanillaOverworldBuilder();
+//        addModifiedVanillaOverworldBiomes(mapper, b -> builder1.build());
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

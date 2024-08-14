@@ -1,4 +1,4 @@
-// 1.21	2024-08-09T21:21:42.8637503	Item Models: fieldtofork
+// 1.21	2024-08-10T11:59:23.6983236	Item Models: fieldtofork
 67007f397f45a214e855d4080032aa129622d5b2 assets/fieldtofork/models/item/asparagus.json
 ab2f5a9316df94f1c34d790c999d9048278f6fac assets/fieldtofork/models/item/asparagus_crowns.json
 08696472bdf8d8d7e02512e29c3c0d1824e381f4 assets/fieldtofork/models/item/bananas.json
@@ -55,6 +55,7 @@ d2243fd3c31be775d9ce98a9a8b30f9c6596a73c assets/fieldtofork/models/item/red_pepp
 435ad46f62347d5118fbdca3698ed3dca2e7efb0 assets/fieldtofork/models/item/salmon_roe.json
 a40798240a2a30731578c3ffca2bb6abfea4c610 assets/fieldtofork/models/item/salt.json
 9dd7d6214ba1e0e16c8f6bed8e39cfab432d7ef9 assets/fieldtofork/models/item/silkworm_eggs.json
+8422abef342cb58bcb9989d660ccfb5b1d8095f9 assets/fieldtofork/models/item/silk_string.json
 4bbb72bbf2acc68a3faea7c9ad32d04239d778a3 assets/fieldtofork/models/item/stone_scythe.json
 9d9459a9b9d2f43088919aa3464f53cc4ae0ca45 assets/fieldtofork/models/item/strawberry.json
 ffc2111eae0f98370c126c06740c5c007fe43d48 assets/fieldtofork/models/item/strawberry_seeds.json

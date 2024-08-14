@@ -2,6 +2,7 @@ package com.ryankshah.fieldtofork;
 
 import com.ryankshah.fieldtofork.client.FTFCommonClient;
 import com.ryankshah.fieldtofork.gui.screen.ChurnScreen;
+import com.ryankshah.fieldtofork.gui.screen.SilkwormHabitatScreen;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
 import com.ryankshah.fieldtofork.registry.MenuRegistry;
 import net.fabricmc.api.ClientModInitializer;
@@ -22,6 +23,7 @@ public class FieldToForkFabricClient implements ClientModInitializer
 //        Screen.register(MenuRegistry.CHURN_MENU.get(), ChurnScreen::new);
 
         MenuScreens.register(MenuRegistry.CHURN_MENU.get(), ChurnScreen::new);
+        MenuScreens.register(MenuRegistry.SILKWORM_HABITAT.get(), SilkwormHabitatScreen::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.PALM_TRAPDOOR.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.BANANA_TRAPDOOR.get(), RenderType.cutout());

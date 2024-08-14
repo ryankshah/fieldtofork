@@ -39,6 +39,7 @@ public class FieldToForkCommon
 
     public static final ResourceKey<Biome> PALM_BEACH = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "palm_beach"));
     public static final ResourceKey<Biome> FRUIT_FOREST = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "fruit_forest"));
+    public static final ResourceKey<Biome> MULBERRY_GROVE = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "mulberry_grove"));
 
     public static void init() {
         MenuRegistry.init();
@@ -54,6 +55,6 @@ public class FieldToForkCommon
 
     public static void setupTerraBlender() {
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, Constants.MOD_ID, PalmBeachSurfaceRule.makeRules());
-        Regions.register(new FTFOverworldRegion(5));
+        Regions.register(new FTFOverworldRegion(3)); //5
     }
 }

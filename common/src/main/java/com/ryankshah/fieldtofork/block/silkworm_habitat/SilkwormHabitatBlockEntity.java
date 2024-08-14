@@ -2,6 +2,7 @@ package com.ryankshah.fieldtofork.block.silkworm_habitat;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.ryankshah.fieldtofork.gui.menu.SilkwormHabitatMenu;
 import com.ryankshah.fieldtofork.registry.BlockEntityRegistry;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
 import com.ryankshah.fieldtofork.registry.ItemRegistry;
@@ -15,6 +16,9 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -130,7 +134,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
             return map;
         } else {
             Map<Item, Integer> map1 = Maps.newLinkedHashMap();
-            add(map1, (ItemLike) ItemRegistry.SILKWORM_EGGS.get(), 20000);
+            add(map1, (ItemLike) ItemRegistry.SILKWORM_EGGS.get(), 10000);
             fuelCache = map1;
             return map1;
         }
@@ -160,7 +164,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
         Item item = pItem.asItem();
         if (isNeverAFurnaceFuel(item)) {
             if (SharedConstants.IS_RUNNING_IN_IDE) {
-                throw (IllegalStateException) Util.pauseInIde(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getName((ItemStack)null).getString() + " a furnace fuel. That will not work!"));
+                throw (IllegalStateException) Util.pauseInIde(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item.getName((ItemStack)null).getString() + " a silkworm habitat resource. That will not work!"));
             }
         } else {
             pMap.put(item, pBurnTime);
@@ -172,6 +176,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
         return this.producingTime > 0;
     }
 
+    @Override
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
@@ -190,6 +195,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
 
     }
 
+    @Override
     protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.saveAdditional(pTag, pRegistries);
         pTag.putShort("BurnTime", (short)this.producingTime);
@@ -206,6 +212,27 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
     @Override
     protected Component getDefaultName() {
         return SilkwormHabitat.CONTAINER_TITLE;
+    }
+
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        CompoundTag tag = new CompoundTag();
+        tag.putShort("BurnTime", (short)this.producingTime);
+        tag.putShort("CookTime", (short)this.producingProgress);
+        tag.putShort("CookTimeTotal", (short)this.producingTotalTime);
+        ContainerHelper.saveAllItems(tag, this.items, pRegistries);
+        CompoundTag compoundtag = new CompoundTag();
+        this.recipesUsed.forEach((p_187449_, p_187450_) -> {
+            compoundtag.putInt(p_187449_.toString(), p_187450_);
+        });
+        tag.put("RecipesUsed", compoundtag);
+        return tag;
+//        return super.getUpdateTag(pRegistries);
     }
 
     public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, SilkwormHabitatBlockEntity pBlockEntity) {
@@ -269,6 +296,8 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
         }
 
         if (flag1) {
+            BlockState blockState = pLevel.getBlockState(pPos);
+            pLevel.sendBlockUpdated(pPos, blockState, pState, 3);
             setChanged(pLevel, pPos, pState);
         }
 
@@ -372,14 +401,16 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
         if (pIndex == 0 && !flag) {
             this.producingTotalTime = getTotalCookTime(this.level, this);
             this.producingProgress = 0;
-            this.setChanged();
+            BlockState blockState = getBlockState();
+            this.level.sendBlockUpdated(this.getBlockPos(), blockState, blockState, 3);
+            setChanged(this.getLevel(), this.getBlockPos(), blockState);
         }
 
     }
 
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
-        return null;
+        return SilkwormHabitatMenu.getServerMenuProvider().createMenu(i, inventory, inventory.player);//new SilkwormHabitatMenu(i, inventory);
     }
 
     public boolean canPlaceItem(int pIndex, ItemStack pStack) {

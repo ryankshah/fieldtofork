@@ -54,7 +54,7 @@ neoForge {
     }
 }
 
-sourceSets.main.resources { srcDir file('../common/src/generated/resources').getAbsolutePath() }
+//sourceSets.main.resources { srcDir file('../common/src/generated/resources').getAbsolutePath() }
 
 dependencies {
     implementation 'mysticdrew:common-networking-neoforge:1.0.11-1.21'

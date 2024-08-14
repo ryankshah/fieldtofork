@@ -110,7 +110,7 @@ public class FabricPlatformHelper implements Services {
     }
 
     @Override
-    public void openMenu(ServerPlayer player, MenuProvider vanillaProvider, Consumer<FriendlyByteBuf> bufConsumer) {
+    public void openMenu(ServerPlayer player, MenuProvider vanillaProvider, Consumer<RegistryFriendlyByteBuf> bufConsumer) {
         final ExtendedScreenHandlerFactory extendedProvider = new ExtendedScreenHandlerFactory() {
 
             @Override

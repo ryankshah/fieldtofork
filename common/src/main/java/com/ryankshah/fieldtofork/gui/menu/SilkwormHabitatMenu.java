@@ -2,6 +2,7 @@ package com.ryankshah.fieldtofork.gui.menu;
 
 import com.ryankshah.fieldtofork.block.churn.recipe.ChurnRecipe;
 import com.ryankshah.fieldtofork.block.churn.recipe.ChurnRecipeInput;
+import com.ryankshah.fieldtofork.block.silkworm_habitat.SilkwormHabitat;
 import com.ryankshah.fieldtofork.block.silkworm_habitat.SilkwormHabitatBlockEntity;
 import com.ryankshah.fieldtofork.block.silkworm_habitat.SilkwormHabitatResultSlot;
 import com.ryankshah.fieldtofork.block.silkworm_habitat.SilkwormHabitatWormSlot;
@@ -15,7 +16,9 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -43,14 +46,11 @@ public class SilkwormHabitatMenu extends RecipeBookMenu<SingleRecipeInput, Abstr
     private static final int USE_ROW_SLOT_START = 30;
     private static final int USE_ROW_SLOT_END = 39;
     private final Container container;
+    protected ContainerLevelAccess access;
     private final ContainerData data;
     protected Level level;
     private final RecipeType<? extends AbstractCookingRecipe> recipeType;
     private final RecipeBookType recipeBookType;
-
-    protected SilkwormHabitatMenu(MenuType<?> pMenuType, RecipeType<? extends AbstractCookingRecipe> pRecipeType, RecipeBookType pRecipeBookType, int pContainerId, Inventory pPlayerInventory) {
-        this(pMenuType, pRecipeType, pRecipeBookType, pContainerId, pPlayerInventory, new SimpleContainer(3), new SimpleContainerData(4));
-    }
 
     public SilkwormHabitatMenu(int containerId, Inventory playerInventory) {
         this(containerId, playerInventory, ContainerLevelAccess.NULL);
@@ -58,12 +58,8 @@ public class SilkwormHabitatMenu extends RecipeBookMenu<SingleRecipeInput, Abstr
 
     public SilkwormHabitatMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
         this(MenuRegistry.SILKWORM_HABITAT.get(), RecipeRegistry.SILKWORM_HABITAT.get(), RecipeBookType.FURNACE, containerId, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
+        this.access = access;
         this.level = playerInventory.player.level();
-    }
-
-    public SilkwormHabitatMenu(int i, Inventory inventory, RegistryFriendlyByteBuf registryFriendlyByteBuf) {
-        this(MenuRegistry.SILKWORM_HABITAT.get(), RecipeRegistry.SILKWORM_HABITAT.get(), RecipeBookType.FURNACE, i, inventory, new SimpleContainer(3), new SimpleContainerData(4));
-        this.level = inventory.player.level();
     }
 
     protected SilkwormHabitatMenu(MenuType<?> pMenuType, RecipeType<? extends AbstractCookingRecipe> pRecipeType, RecipeBookType pRecipeBookType, int pContainerId, Inventory pPlayerInventory, Container pContainer, ContainerData pData) {
@@ -93,12 +89,12 @@ public class SilkwormHabitatMenu extends RecipeBookMenu<SingleRecipeInput, Abstr
         this.addDataSlots(pData);
     }
 
-    public SilkwormHabitatMenu(int i, Inventory inventory, FriendlyByteBuf o) {
-        this(i, inventory);
+    public SilkwormHabitatMenu(int i, Inventory inventory, Recipe<?> recipe) {
+        this(i, inventory, ContainerLevelAccess.NULL);
     }
 
-    public SilkwormHabitatMenu(int i, Inventory inventory, Object o) {
-        this(i, inventory);
+    public SilkwormHabitatMenu(int i, Inventory inventory, RegistryFriendlyByteBuf registryFriendlyByteBuf) {
+        this(i, inventory, ContainerLevelAccess.create(inventory.player.level(), registryFriendlyByteBuf.readBlockPos()));
     }
 
     public void fillCraftSlotsStackedContents(StackedContents pItemHelper) {
@@ -183,6 +179,16 @@ public class SilkwormHabitatMenu extends RecipeBookMenu<SingleRecipeInput, Abstr
         }
 
         return itemstack;
+    }
+
+    public static SilkwormHabitatMenu getClientMenu(int id, Inventory playerInventory) {
+        return new SilkwormHabitatMenu(MenuRegistry.SILKWORM_HABITAT.get(), RecipeRegistry.SILKWORM_HABITAT.get(), RecipeBookType.FURNACE, id, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
+    }
+
+    public static MenuProvider getServerMenuProvider()
+    {
+        return new SimpleMenuProvider((id, playerInventory, serverPlayer) -> new SilkwormHabitatMenu(id, playerInventory),
+                SilkwormHabitat.CONTAINER_TITLE);
     }
 
     protected boolean canSmelt(ItemStack pStack) {

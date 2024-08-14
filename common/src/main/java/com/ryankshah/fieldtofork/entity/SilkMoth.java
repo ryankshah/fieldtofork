@@ -36,7 +36,7 @@ import java.util.EnumSet;
 public class SilkMoth extends PathfinderMob implements GeoEntity
 {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.lunarmoth.fly");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.silkmoth.fly");
 
     public SilkMoth(EntityType<? extends PathfinderMob> p_i48575_1_, Level p_i48575_2_) {
         super(p_i48575_1_, p_i48575_2_);
@@ -71,7 +71,7 @@ public class SilkMoth extends PathfinderMob implements GeoEntity
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 5.0D).add(Attributes.FLYING_SPEED, (double)0.3F).add(Attributes.MOVEMENT_SPEED, (double)0.3F).add(Attributes.ATTACK_DAMAGE, 1.0D).add(Attributes.FOLLOW_RANGE, 24.0D);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 5.0D).add(Attributes.FLYING_SPEED, (double)0.3F).add(Attributes.MOVEMENT_SPEED, (double)0.3F).add(Attributes.ATTACK_DAMAGE, 1.0D).add(Attributes.FOLLOW_RANGE, 12D);
     }
 
     protected PathNavigation createNavigation(Level p_27815_) {
@@ -129,6 +129,7 @@ public class SilkMoth extends PathfinderMob implements GeoEntity
     private <E extends SilkMoth> PlayState mothController(final software.bernie.geckolib.animation.AnimationState<SilkMoth> event) {
         AnimationController<SilkMoth> controller = event.getController();
         controller.transitionLength(0);
+        controller.setAnimationSpeed(5.0f); // prev 2.0f
 
         return event.setAndContinue(IDLE);
     }

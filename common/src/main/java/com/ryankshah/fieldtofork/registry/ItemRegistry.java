@@ -114,6 +114,7 @@ public class ItemRegistry
     public static final Supplier<Item> SALT = registerItem("salt", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> BUTTER = registerItem("butter", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> UNWOVEN_SILK = registerItem("unwoven_silk", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> SILK_STRING = registerItem("silk_string", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> DURUM_WHEAT_SEEDS = registerItem("durum_wheat_seeds", () -> new ItemNameBlockItem(BlockRegistry.DURUM_WHEAT_CROP.get(), new Item.Properties()));
     public static final Supplier<Item> DURUM_WHEAT = registerItem("durum_wheat", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> DURUM_WHEAT_FLOUR = registerItem("durum_wheat_flour", () -> new Item(new Item.Properties()));
@@ -239,5 +240,13 @@ public class ItemRegistry
                 entries.accept(ItemRegistry.WATERING_CAN.get());
                 entries.accept(ItemRegistry.PITCHFORK.get());
                 entries.accept(ItemRegistry.UNWOVEN_SILK.get());
+            }).build());
+
+    public static final Supplier<CreativeModeTab> MATERIALS_TAB = FieldToForkCommon.COMMON_PLATFORM.registerCreativeModeTab("fieldtofork_materials", () -> FieldToForkCommon.COMMON_PLATFORM.newCreativeTabBuilder()
+            .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".materials"))
+            .icon(() -> new ItemStack(ItemRegistry.SILK_STRING.get()))
+            .displayItems((enabledFeatures, entries) -> {
+                entries.accept(ItemRegistry.UNWOVEN_SILK.get());
+                entries.accept(ItemRegistry.SILK_STRING.get());
             }).build());
 }

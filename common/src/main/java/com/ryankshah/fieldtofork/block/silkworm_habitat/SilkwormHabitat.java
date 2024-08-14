@@ -5,12 +5,16 @@ import com.ryankshah.fieldtofork.Constants;
 import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.gui.menu.ChurnMenu;
 import com.ryankshah.fieldtofork.gui.menu.SilkwormHabitatMenu;
+import com.ryankshah.fieldtofork.platform.Services;
 import com.ryankshah.fieldtofork.registry.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -51,11 +55,12 @@ public class SilkwormHabitat extends BaseEntityBlock
         return createHabitatTicker(pLevel, pBlockEntityType, BlockEntityRegistry.SILKWORM_HABITAT.get());
     }
 
-
     @Nullable
     protected static <T extends BlockEntity> BlockEntityTicker<T> createHabitatTicker(Level pLevel, BlockEntityType<T> pServerType, BlockEntityType<? extends SilkwormHabitatBlockEntity> pClientType) {
         return pLevel.isClientSide ? null : createTickerHelper(pServerType, pClientType, SilkwormHabitatBlockEntity::serverTick);
     }
+
+
 
     public MapCodec<? extends SilkwormHabitat> codec() {
         return CODEC;
@@ -104,12 +109,41 @@ public class SilkwormHabitat extends BaseEntityBlock
         PRODUCING = BooleanProperty.create("producing");
     }
 
+//    public void openContainer(Level pLevel, BlockPos pPos, Player pPlayer) {
+//        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+//        if (blockentity instanceof SilkwormHabitatBlockEntity && pPlayer instanceof ServerPlayer serverPlayer) {
+//            FieldToForkCommon.COMMON_PLATFORM.openMenu(serverPlayer, (MenuProvider) blockentity, buf -> {
+//                ((FriendlyByteBuf) buf).writeBlockPos(pPos);
+//            });
+//        }
+//    }
+
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            FieldToForkCommon.COMMON_PLATFORM.openMenu((ServerPlayer) player, state.getMenuProvider(level, pos), buf -> ((FriendlyByteBuf)buf).writeBlockPos(pos));
-            return InteractionResult.CONSUME;
+//            FieldToForkCommon.COMMON_PLATFORM.openMenu((ServerPlayer) player, state.getMenuProvider(level, pos), buf -> ((FriendlyByteBuf)buf).writeBlockPos(pos));
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof SilkwormHabitatBlockEntity te) {
+                if (player instanceof ServerPlayer serverPlayer) {
+//                    serverPlayer.openMenu(SilkwormHabitatMenu.getServerMenuProvider()); //(state, level, pos));
+                }
+//                openContainer(level, pos, player);
+
+
+                return InteractionResult.SUCCESS;
+            }
+            return super.useWithoutItem(state, level, pos, player, hitResult);
+        }
+    }
+
+
+    public void openContainer(Level pLevel, BlockPos pPos, Player pPlayer) {
+        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+        if (blockentity instanceof SilkwormHabitatBlockEntity) {
+            FieldToForkCommon.COMMON_PLATFORM.openMenu((ServerPlayer) pPlayer, (MenuProvider) blockentity, buf->{
+                ((RegistryFriendlyByteBuf)buf).writeBlockPos(pPos);
+            });
         }
     }
 

@@ -84,6 +84,7 @@ public class FTFItemModelProvider extends ItemModelProvider
         basicItem(ItemRegistry.VEGETABLE_SOUP.get());
 
         basicItem(ItemRegistry.UNWOVEN_SILK.get());
+        basicItem(ItemRegistry.SILK_STRING.get());
 
         basicItem(ItemRegistry.STONE_SCYTHE.get());
         basicItem(ItemRegistry.IRON_SCYTHE.get());

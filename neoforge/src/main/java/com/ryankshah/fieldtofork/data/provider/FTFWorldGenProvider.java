@@ -4,6 +4,7 @@ import com.ryankshah.fieldtofork.Constants;
 import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
 import com.ryankshah.fieldtofork.registry.WorldGenRegistry;
+import com.ryankshah.fieldtofork.worldgen.CommonSpawning;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -17,11 +18,13 @@ import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.WeightedListInt;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
@@ -39,6 +42,7 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlace
 import net.minecraft.world.level.levelgen.placement.*;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.List;
@@ -150,6 +154,17 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         BlockStateProvider.simple(BlockRegistry.POMEGRANATE_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
                         new ForkingTrunkPlacer(5, 2, 4),
                         BlockStateProvider.simple(BlockRegistry.POMEGRANATE_LEAVES.get()),
+                        new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
+//                    new TwoLayersFeatureSize(1, 0, 2)
+                        new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
+                ).build()
+        ));
+        context.register(WorldGenRegistry.MULBERRY_TREE_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.MULBERRY_TREE_F.get(),
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.MULBERRY_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y)),
+                        new ForkingTrunkPlacer(5, 2, 4),
+                        BlockStateProvider.simple(BlockRegistry.MULBERRY_LEAVES.get()),
                         new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
 //                    new TwoLayersFeatureSize(1, 0, 2)
                         new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
@@ -270,6 +285,20 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         )
                 )
         );
+        context.register(WorldGenRegistry.MULBERRY_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.MULBERRY_TREE_CF_RK).get(),
+                        List.of(
+                                CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(2), 1)
+                                        .build())),
+                                InSquarePlacement.spread(),
+                                SurfaceWaterDepthFilter.forMaxDepth(0),
+                                HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE),
+                                BiomeFilter.biome(),
+                                BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(BlockRegistry.MULBERRY_SAPLING.get().defaultBlockState(), Vec3i.ZERO))
+                        )
+                )
+        );
     }
 
     public static void biomes(BootstrapContext<Biome> context) {
@@ -325,6 +354,33 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.ORANGE_TREE_RK).get())
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.PEAR_TREE_RK).get())
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.POMEGRANATE_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
+                        ).build()
+        );
+
+        MobSpawnSettings.Builder mbBuilder = new MobSpawnSettings.Builder();
+        CommonSpawning.MULBERRY_GROVE_SPAWNS.forEach(spawnerData -> mbBuilder.addSpawn(MobCategory.CREATURE, spawnerData)); //mbBuilder.addSpawn(MobCategory.CREATURE, CommonSpawning.MULBERRY_GROVE_SPAWNS.);
+        context.register(FieldToForkCommon.MULBERRY_GROVE,
+                new Biome.BiomeBuilder()
+                        .specialEffects(
+                                new BiomeSpecialEffects.Builder()
+                                        .skyColor(8103167)
+                                        .fogColor(12638463)
+                                        .waterColor(6141935)
+                                        .waterFogColor(6141935)
+                                        .grassColorOverride(11983713)
+                                        .foliageColorOverride(11983713)
+                                        .build()
+                        )
+                        .hasPrecipitation(true)
+                        .temperature(0.5F)
+                        .downfall(0.8F)
+                        .mobSpawnSettings(
+                                mbBuilder.build()
+                        )
+                        .generationSettings(
+                                baseSettings(context)
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.MULBERRY_TREE_RK).get())
                                         .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
                         ).build()
         );

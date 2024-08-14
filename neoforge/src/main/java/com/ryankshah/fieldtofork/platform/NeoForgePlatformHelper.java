@@ -80,8 +80,8 @@ public class NeoForgePlatformHelper implements Services {
     }
 
     @Override
-    public void openMenu(ServerPlayer serverPlayer, MenuProvider provider, Consumer<FriendlyByteBuf> buf) {
-        serverPlayer.openMenu(provider);
+    public void openMenu(ServerPlayer serverPlayer, MenuProvider provider, Consumer<RegistryFriendlyByteBuf> buf) {
+        serverPlayer.openMenu(provider, buf);
     }
 
     @Override

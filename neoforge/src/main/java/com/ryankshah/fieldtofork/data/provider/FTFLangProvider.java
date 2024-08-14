@@ -22,6 +22,7 @@ public class FTFLangProvider extends LanguageProvider {
         add("itemGroup." + Constants.MOD_ID + ".foods", "Field to Fork Foods");
         add("itemGroup." + Constants.MOD_ID + ".seeds", "Field to Fork Seeds");
         add("itemGroup." + Constants.MOD_ID + ".tools", "Field to Fork Tools");
+        add("itemGroup." + Constants.MOD_ID + ".materials", "Field to Fork Materials");
 
         add(ItemRegistry.BANANAS.get(), "Bananas");
         add(ItemRegistry.BANANA_SINGLE.get(), "Banana");
@@ -62,6 +63,7 @@ public class FTFLangProvider extends LanguageProvider {
         add(ItemRegistry.VEGETABLE_SOUP.get(), "Vegetable Soup");
 
         add(ItemRegistry.UNWOVEN_SILK.get(), "Unwoven Silk");
+        add(ItemRegistry.SILK_STRING.get(), "Silk String");
 
         add("entity." + Constants.MOD_ID + ".silkmoth", "Silk Moth");
 

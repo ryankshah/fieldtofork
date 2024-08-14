@@ -43,7 +43,7 @@ public interface Services
     MenuType<ChurnMenu> registerChurnMenu();
     MenuType<SilkwormHabitatMenu> registerSilkwormHabitatMenu();
 
-    void openMenu(ServerPlayer player, MenuProvider provider, Consumer<FriendlyByteBuf> buf);
+    void openMenu(ServerPlayer player, MenuProvider provider, Consumer<RegistryFriendlyByteBuf> buf);
 
     CreativeModeTab.Builder newCreativeTabBuilder();
 
