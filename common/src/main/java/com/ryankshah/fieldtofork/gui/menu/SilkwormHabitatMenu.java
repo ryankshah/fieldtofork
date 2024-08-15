@@ -185,9 +185,11 @@ public class SilkwormHabitatMenu extends RecipeBookMenu<SingleRecipeInput, Abstr
         return new SilkwormHabitatMenu(MenuRegistry.SILKWORM_HABITAT.get(), RecipeRegistry.SILKWORM_HABITAT.get(), RecipeBookType.FURNACE, id, playerInventory, new SimpleContainer(3), new SimpleContainerData(4));
     }
 
-    public static MenuProvider getServerMenuProvider()
+    public static MenuProvider getServerMenuProvider(SilkwormHabitatBlockEntity te)
     {
-        return new SimpleMenuProvider((id, playerInventory, serverPlayer) -> new SilkwormHabitatMenu(id, playerInventory),
+        return new SimpleMenuProvider((id, playerInventory, serverPlayer) ->
+                new SilkwormHabitatMenu(MenuRegistry.SILKWORM_HABITAT.get(), RecipeRegistry.SILKWORM_HABITAT.get(),
+                        RecipeBookType.FURNACE, id, playerInventory, te, te.getContainerData()),
                 SilkwormHabitat.CONTAINER_TITLE);
     }
 

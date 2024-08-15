@@ -126,7 +126,7 @@ public class SilkwormHabitat extends BaseEntityBlock
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof SilkwormHabitatBlockEntity te) {
                 if (player instanceof ServerPlayer serverPlayer) {
-//                    serverPlayer.openMenu(SilkwormHabitatMenu.getServerMenuProvider()); //(state, level, pos));
+                    serverPlayer.openMenu(SilkwormHabitatMenu.getServerMenuProvider(te)); //(state, level, pos));
                 }
 //                openContainer(level, pos, player);
 

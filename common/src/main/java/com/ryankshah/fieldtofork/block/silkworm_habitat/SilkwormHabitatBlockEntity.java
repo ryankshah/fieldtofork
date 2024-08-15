@@ -76,56 +76,24 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
     int producingTotalTime;
     @Nullable
     private static volatile Map<Item, Integer> fuelCache;
-    protected final ContainerData dataAccess;
+    protected final SilkwormHabitatContainerData dataAccess;
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed;
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends AbstractCookingRecipe> quickCheck;
 
     public SilkwormHabitatBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityRegistry.SILKWORM_HABITAT.get(), pPos, pBlockState);
         this.items = NonNullList.withSize(3, ItemStack.EMPTY);
-        this.dataAccess = new ContainerData() {
-            public int get(int p_58431_) {
-                switch (p_58431_) {
-                    case 0:
-                        return SilkwormHabitatBlockEntity.this.producingTime;
-                    case 1:
-                        return SilkwormHabitatBlockEntity.this.producingDuration;
-                    case 2:
-                        return SilkwormHabitatBlockEntity.this.producingProgress;
-                    case 3:
-                        return SilkwormHabitatBlockEntity.this.producingTotalTime;
-                    default:
-                        return 0;
-                }
-            }
-
-            public void set(int p_58433_, int p_58434_) {
-                switch (p_58433_) {
-                    case 0:
-                        SilkwormHabitatBlockEntity.this.producingTime = p_58434_;
-                        break;
-                    case 1:
-                        SilkwormHabitatBlockEntity.this.producingDuration = p_58434_;
-                        break;
-                    case 2:
-                        SilkwormHabitatBlockEntity.this.producingProgress = p_58434_;
-                        break;
-                    case 3:
-                        SilkwormHabitatBlockEntity.this.producingTotalTime = p_58434_;
-                }
-
-            }
-
-            public int getCount() {
-                return 4;
-            }
-        };
+        this.dataAccess = new SilkwormHabitatContainerData(this);
         this.recipesUsed = new Object2IntOpenHashMap();
         this.quickCheck = RecipeManager.createCheck(RecipeRegistry.SILKWORM_HABITAT.get());
     }
 
     public static void invalidateCache() {
         fuelCache = null;
+    }
+
+    public SilkwormHabitatContainerData getContainerData() {
+        return this.dataAccess;
     }
 
     public static Map<Item, Integer> getFuel() {
@@ -410,7 +378,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
 
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
-        return SilkwormHabitatMenu.getServerMenuProvider().createMenu(i, inventory, inventory.player);//new SilkwormHabitatMenu(i, inventory);
+        return SilkwormHabitatMenu.getClientMenu(i, inventory);
     }
 
     public boolean canPlaceItem(int pIndex, ItemStack pStack) {
