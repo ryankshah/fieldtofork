@@ -71,7 +71,8 @@
       "fieldtofork:mango_tree_pf",
       "fieldtofork:orange_tree_pf",
       "fieldtofork:pear_tree_pf",
-      "fieldtofork:pomegranate_tree_pf"
+      "fieldtofork:pomegranate_tree_pf",
+      "fieldtofork:flowers_pf"
     ],
     [
       "minecraft:freeze_top_layer"

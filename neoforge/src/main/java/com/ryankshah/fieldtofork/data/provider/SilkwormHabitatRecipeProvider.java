@@ -48,8 +48,8 @@ public class SilkwormHabitatRecipeProvider implements DataProvider, IConditionBu
                             CookingBookCategory.MISC,
                             Ingredient.of(new ItemStack(BlockRegistry.MULBERRY_LEAVES.get(), 1)),
                             new ItemStack(ItemRegistry.UNWOVEN_SILK.get(), 1),
-                            0.35f,
-                        200
+                            0.25f,
+                        600
                 ),
                 null
         );

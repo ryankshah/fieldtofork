@@ -8,6 +8,8 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -76,7 +78,7 @@ public class NeoForgePlatformHelper implements Services {
     }
     @Override
     public MenuType<SilkwormHabitatMenu> registerSilkwormHabitatMenu() {
-        return IMenuTypeExtension.create(SilkwormHabitatMenu::new);
+        return new MenuType<>(SilkwormHabitatMenu::new, FeatureFlags.DEFAULT_FLAGS); //IMenuTypeExtension.create(SilkwormHabitatMenu::new);
     }
 
     @Override

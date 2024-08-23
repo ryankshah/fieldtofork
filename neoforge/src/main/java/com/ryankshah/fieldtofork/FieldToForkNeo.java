@@ -3,23 +3,27 @@ package com.ryankshah.fieldtofork;
 
 import com.mojang.serialization.MapCodec;
 import com.ryankshah.fieldtofork.data.provider.*;
+import com.ryankshah.fieldtofork.entity.SilkMoth;
 import com.ryankshah.fieldtofork.gui.screen.ChurnScreen;
 import com.ryankshah.fieldtofork.gui.screen.SilkwormHabitatScreen;
-import com.ryankshah.fieldtofork.registry.BlockRegistry;
-import com.ryankshah.fieldtofork.registry.EntityRegistry;
-import com.ryankshah.fieldtofork.registry.MenuRegistry;
-import com.ryankshah.fieldtofork.registry.RecipeRegistry;
+import com.ryankshah.fieldtofork.registry.*;
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.SpawnPlacementType;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.animal.camel.Camel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -33,6 +37,9 @@ import net.neoforged.neoforge.common.loot.AddTableLootModifier;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -68,6 +75,7 @@ public class FieldToForkNeo
         eventBus.addListener(FieldToForkNeo::gatherData);
         eventBus.addListener(FieldToForkNeo::registerScreens);
         eventBus.addListener(FieldToForkNeo::registerRecipeBookCategories);
+        eventBus.addListener(FieldToForkNeo::registerSpawnPlacements);
     }
 
 //    private static void clientSetup(final FMLClientSetupEvent event) {
@@ -99,6 +107,7 @@ public class FieldToForkNeo
             FTFBlockTagsProvider blockTags = new FTFBlockTagsProvider(output, event.getLookupProvider(), Constants.MOD_ID, existingFileHelper);
             generator.addProvider(true, blockTags);
             generator.addProvider(true, new FTFItemTagsProvider(output, event.getLookupProvider(), blockTags.contentsGetter()));
+            generator.addProvider(true, new FTFBiomeTagsProvider(output, event.getLookupProvider(), existingFileHelper));
             generator.addProvider(true, new FTFLootTables(output, event.getLookupProvider()));
             generator.addProvider(true, new FTFRecipeProvider(output, event.getLookupProvider()));
             generator.addProvider(true, new ChurnRecipeProvider(output, event.getLookupProvider()));
@@ -113,6 +122,10 @@ public class FieldToForkNeo
     private static void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
         event.registerRecipeCategoryFinder(RecipeRegistry.CHURN_RECIPE_TYPE.get(), holder -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(RecipeRegistry.SILKWORM_HABITAT.get(), holder -> RecipeBookCategories.UNKNOWN);
+    }
+
+    private static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(EntityRegistry.SILKMOTH.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SilkMoth::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
 //    @SubscribeEvent

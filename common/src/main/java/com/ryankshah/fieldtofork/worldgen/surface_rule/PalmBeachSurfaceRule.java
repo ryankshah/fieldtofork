@@ -1,6 +1,7 @@
 package com.ryankshah.fieldtofork.worldgen.surface_rule;
 
 import com.ryankshah.fieldtofork.FieldToForkCommon;
+import com.ryankshah.fieldtofork.registry.WorldGenRegistry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
@@ -17,7 +18,7 @@ public class PalmBeachSurfaceRule
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
 
         return SurfaceRules.sequence(
-                    SurfaceRules.ifTrue(SurfaceRules.isBiome(FieldToForkCommon.PALM_BEACH),
+                    SurfaceRules.ifTrue(SurfaceRules.isBiome(WorldGenRegistry.PALM_BEACH),
                             SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SAND)));
     }
 

@@ -1,5 +1,6 @@
 package com.ryankshah.fieldtofork.data.provider;
 
+import com.ryankshah.fieldtofork.registry.BlockRegistry;
 import com.ryankshah.fieldtofork.registry.FTFTags;
 import com.ryankshah.fieldtofork.registry.ItemRegistry;
 import net.minecraft.core.HolderLookup;
@@ -34,7 +35,20 @@ public class FTFItemTagsProvider extends ItemTagsProvider
         tag(FTFTags.VEGETABLES).add(
                 ItemRegistry.ASPARAGUS.get(), ItemRegistry.LEEK.get(), ItemRegistry.RADISH.get(),
                 ItemRegistry.SWEET_POTATO.get(), ItemRegistry.ZUCCHINI.get(), ItemRegistry.GARLIC.get(),
-                ItemRegistry.GINGER.get()
+                ItemRegistry.GINGER.get(), ItemRegistry.CABBAGE.get()
+        );
+
+        tag(FTFTags.FLOWERS).add(
+                BlockRegistry.IRIS_FLOWER_BLOCK_ITEM.get(),
+                BlockRegistry.CROCUS_VERNUS_BLOCK_ITEM.get(),
+                BlockRegistry.CROCUS_FLAVUS_BLOCK_ITEM.get(),
+                BlockRegistry.DAFFODIL_BLOCK_ITEM.get(),
+                BlockRegistry.BELLFLOWER_BLOCK_ITEM.get(),
+                BlockRegistry.WHITE_ROSE_BLOCK_ITEM.get(),
+                BlockRegistry.GERANIUM_BLOCK_ITEM.get(),
+                BlockRegistry.MARIGOLD_BLOCK_ITEM.get(),
+                BlockRegistry.THISTLE_BLOCK_ITEM.get(),
+                BlockRegistry.CHRYSANTHEMUM_BLOCK_ITEM.get()
         );
     }
 }

@@ -46,6 +46,18 @@ public class FTFBlockLootTables extends BlockLootSubProvider
         dropSelf(BlockRegistry.VILLAGER_SCARECROW_BLOCK.get());
         dropSelf(BlockRegistry.CHURN.get());
         dropSelf(BlockRegistry.SILKWORM_HABITAT.get());
+        dropSelf(BlockRegistry.SPINNING_WHEEL.get());
+
+        dropSelf(BlockRegistry.IRIS_FLOWER.get());
+        dropSelf(BlockRegistry.CROCUS_VERNUS.get());
+        dropSelf(BlockRegistry.CROCUS_FLAVUS.get());
+        dropSelf(BlockRegistry.DAFFODIL.get());
+        dropSelf(BlockRegistry.BELLFLOWER.get());
+        dropSelf(BlockRegistry.GERANIUM.get());
+        dropSelf(BlockRegistry.WHITE_ROSE.get());
+        dropSelf(BlockRegistry.MARIGOLD.get());
+        dropSelf(BlockRegistry.THISTLE.get());
+        dropSelf(BlockRegistry.CHRYSANTHEMUM.get());
 
         dropSelf(BlockRegistry.PALM_SAPLING.get());
         dropSelf(BlockRegistry.PALM_LOG.get());
@@ -254,23 +266,36 @@ public class FTFBlockLootTables extends BlockLootSubProvider
 
         LootItemCondition.Builder tomatoConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.TOMATO_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
-        add(BlockRegistry.TOMATO_CROP.get(), createCropDrops(BlockRegistry.TOMATO_CROP.get(), ItemRegistry.TOMATO.get(), ItemRegistry.TOMATO_SEEDS.get(), passionfruitConditionBuilder));
+        add(BlockRegistry.TOMATO_CROP.get(), createCropDrops(BlockRegistry.TOMATO_CROP.get(), ItemRegistry.TOMATO.get(), ItemRegistry.TOMATO_SEEDS.get(), tomatoConditionBuilder));
 
         LootItemCondition.Builder garlicConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.GARLIC_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
-        add(BlockRegistry.GARLIC_CROP.get(), createCropDrops(BlockRegistry.GARLIC_CROP.get(), ItemRegistry.GARLIC.get(), ItemRegistry.GARLIC.get(), passionfruitConditionBuilder));
+        add(BlockRegistry.GARLIC_CROP.get(), createCropDrops(BlockRegistry.GARLIC_CROP.get(), ItemRegistry.GARLIC.get(), ItemRegistry.GARLIC.get(), garlicConditionBuilder));
 
         LootItemCondition.Builder strawberryConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.STRAWBERRY_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
-        add(BlockRegistry.STRAWBERRY_CROP.get(), createCropDrops(BlockRegistry.STRAWBERRY_CROP.get(), ItemRegistry.STRAWBERRY.get(), ItemRegistry.STRAWBERRY_SEEDS.get(), passionfruitConditionBuilder));
+        add(BlockRegistry.STRAWBERRY_CROP.get(), createCropDrops(BlockRegistry.STRAWBERRY_CROP.get(), ItemRegistry.STRAWBERRY.get(), ItemRegistry.STRAWBERRY_SEEDS.get(), strawberryConditionBuilder));
 
         LootItemCondition.Builder durumWheatConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.DURUM_WHEAT_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
-        add(BlockRegistry.DURUM_WHEAT_CROP.get(), createCropDrops(BlockRegistry.DURUM_WHEAT_CROP.get(), ItemRegistry.DURUM_WHEAT.get(), ItemRegistry.DURUM_WHEAT_SEEDS.get(), passionfruitConditionBuilder));
+        add(BlockRegistry.DURUM_WHEAT_CROP.get(), createCropDrops(BlockRegistry.DURUM_WHEAT_CROP.get(), ItemRegistry.DURUM_WHEAT.get(), ItemRegistry.DURUM_WHEAT_SEEDS.get(), durumWheatConditionBuilder));
 
         LootItemCondition.Builder gingerConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.GINGER_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
-        add(BlockRegistry.GINGER_CROP.get(), createCropDrops(BlockRegistry.GINGER_CROP.get(), ItemRegistry.GINGER.get(), ItemRegistry.GINGER_ROOT_SLIP.get(), passionfruitConditionBuilder));
+        add(BlockRegistry.GINGER_CROP.get(), createCropDrops(BlockRegistry.GINGER_CROP.get(), ItemRegistry.GINGER.get(), ItemRegistry.GINGER_ROOT_SLIP.get(), gingerConditionBuilder));
+
+        LootItemCondition.Builder riceConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.RICE_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
+        add(BlockRegistry.RICE_CROP.get(), createCropDrops(BlockRegistry.RICE_CROP.get(), ItemRegistry.SHEAF_OF_RICE.get(), ItemRegistry.SHEAF_OF_RICE.get(), riceConditionBuilder));
+
+        LootItemCondition.Builder pineappleConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.PINEAPPLE_BLOCK.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
+        add(BlockRegistry.PINEAPPLE_BLOCK.get(), createCropDrops(BlockRegistry.PINEAPPLE_BLOCK.get(), ItemRegistry.PINEAPPLE.get(), ItemRegistry.PINEAPPLE_SEEDS.get(), pineappleConditionBuilder)
+                .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(0.125f, 1.0F)).add(LootItem.lootTableItem(ItemRegistry.GOLDEN_PINEAPPLE.get()))));
+
+        LootItemCondition.Builder cabbageConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(BlockRegistry.CABBAGE_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
+        add(BlockRegistry.CABBAGE_CROP.get(), createCropDrops(BlockRegistry.CABBAGE_CROP.get(), ItemRegistry.CABBAGE.get(), ItemRegistry.CABBAGE_SEEDS.get(), cabbageConditionBuilder));
 
     }
 

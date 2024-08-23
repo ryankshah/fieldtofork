@@ -8,6 +8,6 @@ import java.util.List;
 public class CommonSpawning
 {
     public static List<MobSpawnSettings.SpawnerData> MULBERRY_GROVE_SPAWNS = List.of(
-            new MobSpawnSettings.SpawnerData(EntityRegistry.SILKMOTH.get(), 4, 1, 2)
+            new MobSpawnSettings.SpawnerData(EntityRegistry.SILKMOTH.get(), 100, 2, 3)
     );
 }

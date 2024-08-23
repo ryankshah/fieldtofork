@@ -65,7 +65,8 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "fieldtofork:mulberry_tree_pf"
+      "fieldtofork:mulberry_tree_pf",
+      "fieldtofork:flowers_pf"
     ],
     [
       "minecraft:freeze_top_layer"
@@ -79,9 +80,9 @@
     "creature": [
       {
         "type": "fieldtofork:silkmoth",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 4
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 100
       }
     ],
     "misc": [],

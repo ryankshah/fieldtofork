@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "fieldtofork:pineapple"
+    },
+    "b": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "bab",
+    "bbb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:golden_pineapple"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "fieldtofork:mulberry_grove",
+  "spawners": {
+    "type": "fieldtofork:silkmoth",
+    "maxCount": 3,
+    "minCount": 2,
+    "weight": 100
+  }
+}

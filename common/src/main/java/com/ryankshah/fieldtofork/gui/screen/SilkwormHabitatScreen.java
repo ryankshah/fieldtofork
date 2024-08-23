@@ -21,7 +21,7 @@ import net.minecraft.world.inventory.*;
 public class SilkwormHabitatScreen extends AbstractContainerScreen<SilkwormHabitatMenu>
 {
     private boolean widthTooNarrow;
-    private static final ResourceLocation litProgressSprite = ResourceLocation.withDefaultNamespace("container/furnace/lit_progress");
+    private static final ResourceLocation litProgressSprite = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/silkworm_habitat_producing_progress");
     private static final ResourceLocation burnProgressSprite = ResourceLocation.withDefaultNamespace("container/furnace/burn_progress");
     private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/container/silkworm_habitat.png");
 

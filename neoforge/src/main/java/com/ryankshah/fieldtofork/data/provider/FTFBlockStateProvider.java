@@ -7,6 +7,7 @@ import com.ryankshah.fieldtofork.block.silkworm_habitat.SilkwormHabitat;
 import com.ryankshah.fieldtofork.block.crop.FTFCropBlock;
 import com.ryankshah.fieldtofork.block.crop.TwoHighCropBlock;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -27,6 +28,9 @@ public class FTFBlockStateProvider extends BlockStateProvider
     protected void registerStatesAndModels() {
         simpleBlock(BlockRegistry.VILLAGER_SCARECROW_BLOCK.get(), models().getExistingFile(modLoc("block/villager_scarecrow")));
         simpleBlockItem(BlockRegistry.VILLAGER_SCARECROW_BLOCK.get(), models().getExistingFile(modLoc("villager_scarecrow")));
+
+        simpleBlock(BlockRegistry.SPINNING_WHEEL.get(), models().getExistingFile(modLoc("block/spinning_wheel")));
+        simpleBlockItem(BlockRegistry.SPINNING_WHEEL.get(), models().getExistingFile(modLoc("spinning_wheel")));
 
         simpleBlock(BlockRegistry.CHURN.get(), models().getExistingFile(modLoc("block/churn")));
         simpleBlockItem(BlockRegistry.CHURN.get(), models().getExistingFile(modLoc("churn")));
@@ -345,12 +349,26 @@ public class FTFBlockStateProvider extends BlockStateProvider
         threeStageCrop(BlockRegistry.ASPARAGUS_CROP.get());
         threeStageCrop(BlockRegistry.LEEK_CROP.get());
         threeStageCrop(BlockRegistry.EGGPLANT_CROP.get());
-        threeStageCrop(BlockRegistry.BELL_PEPPER_CROP.get());
+//        threeStageCrop(BlockRegistry.BELL_PEPPER_CROP.get());
         threeStageCrop(BlockRegistry.ZUCCHINI_CROP.get());
         doubleHighCropBlock(BlockRegistry.PASSIONFRUIT_CROP.get());
         threeStageCrop(BlockRegistry.STRAWBERRY_CROP.get());
         sevenStageCrop(BlockRegistry.DURUM_WHEAT_CROP.get());
         threeStageCrop(BlockRegistry.GINGER_CROP.get());
+        sevenStageCrop(BlockRegistry.RICE_CROP.get());
+//        sevenStageCrop(BlockRegistry.CABBAGE_CROP.get());
+
+        //Flowers
+        flowerBlock(BlockRegistry.IRIS_FLOWER.get());
+        flowerBlock(BlockRegistry.CROCUS_VERNUS.get());
+        flowerBlock(BlockRegistry.CROCUS_FLAVUS.get());
+        flowerBlock(BlockRegistry.DAFFODIL.get());
+        flowerBlock(BlockRegistry.BELLFLOWER.get());
+        flowerBlock(BlockRegistry.GERANIUM.get());
+        flowerBlock(BlockRegistry.WHITE_ROSE.get());
+        flowerBlock(BlockRegistry.MARIGOLD.get());
+        flowerBlock(BlockRegistry.THISTLE.get());
+        flowerBlock(BlockRegistry.CHRYSANTHEMUM.get());
     }
 
 
@@ -407,9 +425,12 @@ public class FTFBlockStateProvider extends BlockStateProvider
             this.simpleBlockItem(block, leaves_only);
             this.simpleBlockItem(block, leaves_worms);
 
-            if(hasLeaves && !hasWorms)
-                return ConfiguredModel.builder().modelFile(leaves_only).build();
-            else if(hasLeaves && hasWorms)
+//            if(hasLeaves && !hasWorms)
+//                return ConfiguredModel.builder().modelFile(leaves_only).build();
+//            else if(hasLeaves && hasWorms)
+//                return ConfiguredModel.builder().modelFile(leaves_worms).build();
+//            else
+            if(state.getValue(SilkwormHabitat.PRODUCING))
                 return ConfiguredModel.builder().modelFile(leaves_worms).build();
             else
                 return ConfiguredModel.builder().modelFile(empty).build();
@@ -479,7 +500,7 @@ public class FTFBlockStateProvider extends BlockStateProvider
         ResourceLocation blockKey = key(block);
         String path = blockKey.getPath();
 
-        simpleBlock(block, models().getBuilder(blockKey.toString()).parent(models().getExistingFile(ResourceLocation.withDefaultNamespace("block/cross"))).texture("cross", modLoc("block/"+path)).renderType("cutout"));
+        simpleBlock(block, models().getBuilder(blockKey.toString()).parent(models().getExistingFile(ResourceLocation.withDefaultNamespace("block/cross"))).texture("cross", modLoc("block/"+path)).renderType("cutout").guiLight(BlockModel.GuiLight.FRONT));
         simpleBlockItem(block, models().getExistingFile(modLoc("block/" + path)));
     }
 

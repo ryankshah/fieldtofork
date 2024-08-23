@@ -129,7 +129,7 @@ public class SilkMoth extends PathfinderMob implements GeoEntity
     private <E extends SilkMoth> PlayState mothController(final software.bernie.geckolib.animation.AnimationState<SilkMoth> event) {
         AnimationController<SilkMoth> controller = event.getController();
         controller.transitionLength(0);
-        controller.setAnimationSpeed(5.0f); // prev 2.0f
+        controller.setAnimationSpeed(10.0f); // prev 5.0f
 
         return event.setAndContinue(IDLE);
     }

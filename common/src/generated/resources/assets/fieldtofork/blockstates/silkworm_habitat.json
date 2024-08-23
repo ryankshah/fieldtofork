@@ -4,22 +4,22 @@
       "model": "fieldtofork:block/silkworm_habitat"
     },
     "has_leaves=false,has_worms=false,producing=true": {
-      "model": "fieldtofork:block/silkworm_habitat"
+      "model": "fieldtofork:block/silkworm_habitat_leaves_worms"
     },
     "has_leaves=false,has_worms=true,producing=false": {
       "model": "fieldtofork:block/silkworm_habitat"
     },
     "has_leaves=false,has_worms=true,producing=true": {
-      "model": "fieldtofork:block/silkworm_habitat"
+      "model": "fieldtofork:block/silkworm_habitat_leaves_worms"
     },
     "has_leaves=true,has_worms=false,producing=false": {
-      "model": "fieldtofork:block/silkworm_habitat_leaves"
+      "model": "fieldtofork:block/silkworm_habitat"
     },
     "has_leaves=true,has_worms=false,producing=true": {
-      "model": "fieldtofork:block/silkworm_habitat_leaves"
+      "model": "fieldtofork:block/silkworm_habitat_leaves_worms"
     },
     "has_leaves=true,has_worms=true,producing=false": {
-      "model": "fieldtofork:block/silkworm_habitat_leaves_worms"
+      "model": "fieldtofork:block/silkworm_habitat"
     },
     "has_leaves=true,has_worms=true,producing=true": {
       "model": "fieldtofork:block/silkworm_habitat_leaves_worms"

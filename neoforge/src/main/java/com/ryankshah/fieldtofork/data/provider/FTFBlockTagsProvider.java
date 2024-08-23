@@ -1,5 +1,8 @@
 package com.ryankshah.fieldtofork.data.provider;
 
+import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import com.ryankshah.fieldtofork.registry.FTFTags;
+import com.ryankshah.fieldtofork.registry.ItemRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -18,5 +21,11 @@ public class FTFBlockTagsProvider extends BlockTagsProvider
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        tag(FTFTags.FLOWER_BLOCKS).add(
+                BlockRegistry.IRIS_FLOWER.get(),
+                BlockRegistry.CROCUS_VERNUS.get(),
+                BlockRegistry.CROCUS_FLAVUS.get(),
+                BlockRegistry.DAFFODIL.get()
+        );
     }
 }

@@ -4,15 +4,24 @@ import com.ryankshah.fieldtofork.client.FTFCommonClient;
 import com.ryankshah.fieldtofork.gui.screen.ChurnScreen;
 import com.ryankshah.fieldtofork.gui.screen.SilkwormHabitatScreen;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import com.ryankshah.fieldtofork.registry.ItemRegistry;
 import com.ryankshah.fieldtofork.registry.MenuRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.impl.client.screen.ScreenEventFactory;
 import net.fabricmc.fabric.impl.client.screen.ScreenExtensions;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.animal.camel.Camel;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
+
+import java.awt.event.ActionEvent;
 
 public class FieldToForkFabricClient implements ClientModInitializer
 {
@@ -59,5 +68,17 @@ public class FieldToForkFabricClient implements ClientModInitializer
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.VILLAGER_SCARECROW_BLOCK.get(), RenderType.cutout());
 
         FTFCommonClient.registerRenderers(EntityRendererRegistry::register, BlockEntityRenderers::register);
+
+        UseEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
+            if (entityHitResult.getEntity() instanceof Camel camel) {
+                ItemStack itemstack = player.getItemInHand(hand);
+                if (itemstack.is(Items.BUCKET) && !camel.isBaby()) {
+                    ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, ItemRegistry.CAMEL_MILK_BUCKET.get().getDefaultInstance());
+                    player.setItemInHand(hand, itemstack1);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+            return InteractionResult.PASS;
+        });
     }
 }

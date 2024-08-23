@@ -167,6 +167,51 @@
               "function": "minecraft:set_count"
             }
           ],
+          "name": "fieldtofork:durum_wheat_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:strawberry_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:ginger_root_slip"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
           "name": "fieldtofork:pomegranate_sapling"
         },
         {
@@ -273,6 +318,111 @@
             }
           ],
           "name": "fieldtofork:orange_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:mulberry_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:flour"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:salt"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:pineapple"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:pineapple_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.125
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:golden_pineapple"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.5
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "fieldtofork:cabbage_seeds"
         }
       ],
       "rolls": {

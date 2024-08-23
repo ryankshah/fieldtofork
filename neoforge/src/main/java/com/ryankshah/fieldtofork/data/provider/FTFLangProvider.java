@@ -23,6 +23,7 @@ public class FTFLangProvider extends LanguageProvider {
         add("itemGroup." + Constants.MOD_ID + ".seeds", "Field to Fork Seeds");
         add("itemGroup." + Constants.MOD_ID + ".tools", "Field to Fork Tools");
         add("itemGroup." + Constants.MOD_ID + ".materials", "Field to Fork Materials");
+        add("itemGroup." + Constants.MOD_ID + ".clothing", "Field to Fork Clothing");
 
         add(ItemRegistry.BANANAS.get(), "Bananas");
         add(ItemRegistry.BANANA_SINGLE.get(), "Banana");
@@ -53,14 +54,23 @@ public class FTFLangProvider extends LanguageProvider {
         add(ItemRegistry.ZUCCHINI.get(), "Zucchini");
         add(ItemRegistry.GARLIC.get(), "Garlic");
         add(ItemRegistry.GINGER.get(), "Ginger");
+        add(ItemRegistry.CABBAGE.get(), "Cabbage");
 
         add(ItemRegistry.FLOUR.get(), "Flour");
         add(ItemRegistry.SALT.get(), "Salt");
         add(ItemRegistry.BUTTER.get(), "Butter");
+        add(ItemRegistry.SHEAF_OF_RICE.get(), "Sheaf of Rice");
+        add(ItemRegistry.RICE.get(), "Rice");
+        add(ItemRegistry.COOKED_RICE.get(), "Cooked Rice");
         add(ItemRegistry.GOAT_MILK_BUCKET.get(), "Bucket of Goat Milk");
+        add(ItemRegistry.CAMEL_MILK_BUCKET.get(), "Bucket of Camel Milk");
         add(ItemRegistry.SILKWORM_EGGS.get(), "Silkworm Eggs");
         add(ItemRegistry.TOMATO_SOUP.get(), "Tomato Soup");
         add(ItemRegistry.VEGETABLE_SOUP.get(), "Vegetable Soup");
+        add(ItemRegistry.CABBAGE_SOUP.get(), "Cabbage Soup");
+        add(ItemRegistry.CABBAGE_POTATO_SOUP.get(), "Cabbage Potato Soup");
+        add(ItemRegistry.APPLE_CABBAGE_STEW.get(), "Apple Cabbage Stew");
+        add(ItemRegistry.BEEF_STEW.get(), "Beef Stew");
 
         add(ItemRegistry.UNWOVEN_SILK.get(), "Unwoven Silk");
         add(ItemRegistry.SILK_STRING.get(), "Silk String");
@@ -88,6 +98,16 @@ public class FTFLangProvider extends LanguageProvider {
         add(ItemRegistry.STRAWBERRY_SEEDS.get(), "Strawberry Seeds");
         add(ItemRegistry.DURUM_WHEAT_SEEDS.get(), "Durum Wheat Seeds");
         add(ItemRegistry.GINGER_ROOT_SLIP.get(), "Ginger Root Slip");
+        add(ItemRegistry.CABBAGE_SEEDS.get(), "Cabbage Seeds");
+
+        add(ItemRegistry.PINEAPPLE.get(), "Pineapple");
+        add(ItemRegistry.PINEAPPLE_SEEDS.get(), "Pineapple Seeds");
+        add(ItemRegistry.GOLDEN_PINEAPPLE.get(), "Golden Pineapple");
+        add(ItemRegistry.PINEAPPLE_TOP.get(), "Pineapple Top");
+        add(ItemRegistry.PINEAPPLE_BOTTOM.get(), "Pineapple Bottom");
+        add(ItemRegistry.PINEAPPLE_CHUNKS.get(), "Pineapple Chunks");
+        add(ItemRegistry.PINEAPPLE_SLICE.get(), "Pineapple Slice");
+        add(ItemRegistry.PINEAPPLE_JUICE.get(), "Pineapple Juice");
 
         add(ItemRegistry.GOAT_LEG.get(), "Goat Leg");
         add(ItemRegistry.ROAST_GOAT_LEG.get(), "Roast Goat Leg");
@@ -102,6 +122,7 @@ public class FTFLangProvider extends LanguageProvider {
         add(Constants.MOD_ID + ".container.churn", "Churn");
         add(BlockRegistry.SILKWORM_HABITAT.get(), "Silkworm Habitat");
         add(Constants.MOD_ID + ".container.silkworm_habitat", "Silkworm Habitat");
+        add(BlockRegistry.SPINNING_WHEEL.get(), "Spinning Wheel");
 
         add(BlockRegistry.PALM_SAPLING.get(), "Palm Sapling");
         add(BlockRegistry.PALM_LOG.get(), "Palm Log");
@@ -238,6 +259,24 @@ public class FTFLangProvider extends LanguageProvider {
         add(BlockRegistry.MULBERRY_HANGING_SIGN.get(), "Mulberry Hanging Sign");
         add(BlockRegistry.MULBERRY_SIGN.get(), "Mulberry Sign");
         add(BlockRegistry.MULBERRY_PRESSURE_PLATE.get(), "Mulberry Pressure Plate");
+
+        add(BlockRegistry.IRIS_FLOWER.get(), "Iris");
+        add(BlockRegistry.CROCUS_VERNUS.get(), "Crocus Vernus");
+        add(BlockRegistry.CROCUS_FLAVUS.get(), "Crocus Flavus");
+        add(BlockRegistry.DAFFODIL.get(), "Daffodil");
+        add(BlockRegistry.BELLFLOWER.get(), "Bellflower");
+        add(BlockRegistry.GERANIUM.get(), "Geranium");
+        add(BlockRegistry.WHITE_ROSE.get(), "White Rose");
+        add(BlockRegistry.MARIGOLD.get(), "Marigold");
+        add(BlockRegistry.THISTLE.get(), "Thistle");
+        add(BlockRegistry.CHRYSANTHEMUM.get(), "Chrysanthemum");
+
+        add(ItemRegistry.BOUQUET.get(), "Bouquet of Flowers");
+
+        add(ItemRegistry.SILK_HELMET.get(), "Silk Cowl");
+        add(ItemRegistry.SILK_ROBE.get(), "Silk Robe");
+        add(ItemRegistry.SILK_LEGGINGS.get(), "Silk Leggings");
+        add(ItemRegistry.SILK_BOOTS.get(), "Silk Boots");
 
         add(ItemRegistry.STONE_SCYTHE.get(), "Stone Scythe");
         add(ItemRegistry.IRON_SCYTHE.get(), "Iron Scythe");

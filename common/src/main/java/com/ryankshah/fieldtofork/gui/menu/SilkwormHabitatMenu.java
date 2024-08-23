@@ -93,10 +93,6 @@ public class SilkwormHabitatMenu extends RecipeBookMenu<SingleRecipeInput, Abstr
         this(i, inventory, ContainerLevelAccess.NULL);
     }
 
-    public SilkwormHabitatMenu(int i, Inventory inventory, RegistryFriendlyByteBuf registryFriendlyByteBuf) {
-        this(i, inventory, ContainerLevelAccess.create(inventory.player.level(), registryFriendlyByteBuf.readBlockPos()));
-    }
-
     public void fillCraftSlotsStackedContents(StackedContents pItemHelper) {
         if (this.container instanceof StackedContentsCompatible) {
             ((StackedContentsCompatible)this.container).fillStackedContents(pItemHelper);

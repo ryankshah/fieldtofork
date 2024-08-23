@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cabbage": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fieldtofork:cabbage"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fieldtofork:apple_cabbage_stew"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cabbage"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fieldtofork:apple_cabbage_stew"
+    ]
+  }
+}

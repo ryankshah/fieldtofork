@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "s": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "t": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " pp",
+    "tpt",
+    "sss"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:spinning_wheel"
+  }
+}

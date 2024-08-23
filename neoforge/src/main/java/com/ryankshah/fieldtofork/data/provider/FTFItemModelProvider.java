@@ -44,6 +44,7 @@ public class FTFItemModelProvider extends ItemModelProvider
         basicItem(ItemRegistry.ZUCCHINI.get());
         basicItem(ItemRegistry.GARLIC.get());
         basicItem(ItemRegistry.GINGER.get());
+        basicItem(ItemRegistry.CABBAGE.get());
 
         basicItem(ItemRegistry.BANANA_TREE_SEEDS.get());
         basicItem(ItemRegistry.DRAGONFRUIT_TREE_SEEDS.get());
@@ -66,6 +67,16 @@ public class FTFItemModelProvider extends ItemModelProvider
         basicItem(ItemRegistry.GINGER_ROOT_SLIP.get());
         basicItem(ItemRegistry.STRAWBERRY_SEEDS.get());
         basicItem(ItemRegistry.DURUM_WHEAT_SEEDS.get());
+        basicItem(ItemRegistry.CABBAGE_SEEDS.get());
+
+        basicItem(ItemRegistry.PINEAPPLE.get());
+        basicItem(ItemRegistry.GOLDEN_PINEAPPLE.get());
+        basicItem(ItemRegistry.PINEAPPLE_SEEDS.get());
+        basicItem(ItemRegistry.PINEAPPLE_TOP.get());
+        basicItem(ItemRegistry.PINEAPPLE_BOTTOM.get());
+        basicItem(ItemRegistry.PINEAPPLE_CHUNKS.get());
+        basicItem(ItemRegistry.PINEAPPLE_SLICE.get());
+        basicItem(ItemRegistry.PINEAPPLE_JUICE.get());
 
         basicItem(ItemRegistry.GOAT_LEG.get());
         basicItem(ItemRegistry.ROAST_GOAT_LEG.get());
@@ -77,14 +88,29 @@ public class FTFItemModelProvider extends ItemModelProvider
         basicItem(ItemRegistry.FLOUR.get());
         basicItem(ItemRegistry.SALT.get());
         basicItem(ItemRegistry.BUTTER.get());
+        basicItem(ItemRegistry.SHEAF_OF_RICE.get());
+        basicItem(ItemRegistry.RICE.get());
+        basicItem(ItemRegistry.COOKED_RICE.get());
         basicItem(ItemRegistry.DURUM_WHEAT.get());
         basicItem(ItemRegistry.DURUM_WHEAT_FLOUR.get());
         basicItem(ItemRegistry.GOAT_MILK_BUCKET.get());
+        basicItem(ItemRegistry.CAMEL_MILK_BUCKET.get());
         basicItem(ItemRegistry.TOMATO_SOUP.get());
         basicItem(ItemRegistry.VEGETABLE_SOUP.get());
+        basicItem(ItemRegistry.CABBAGE_SOUP.get());
+        basicItem(ItemRegistry.APPLE_CABBAGE_STEW.get());
+        basicItem(ItemRegistry.CABBAGE_POTATO_SOUP.get());
+        basicItem(ItemRegistry.BEEF_STEW.get());
 
         basicItem(ItemRegistry.UNWOVEN_SILK.get());
         basicItem(ItemRegistry.SILK_STRING.get());
+
+        basicItem(ItemRegistry.BOUQUET.get());
+
+        basicItem(ItemRegistry.SILK_HELMET.get());
+        basicItem(ItemRegistry.SILK_ROBE.get());
+        basicItem(ItemRegistry.SILK_LEGGINGS.get());
+        basicItem(ItemRegistry.SILK_BOOTS.get());
 
         basicItem(ItemRegistry.STONE_SCYTHE.get());
         basicItem(ItemRegistry.IRON_SCYTHE.get());

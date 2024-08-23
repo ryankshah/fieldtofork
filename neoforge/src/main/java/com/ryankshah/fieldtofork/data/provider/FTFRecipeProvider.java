@@ -584,6 +584,7 @@ public class FTFRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PASSIONFRUIT_SEEDS.get(), 3)).requires(ItemRegistry.PASSIONFRUIT.get()).unlockedBy("has_passionfruit", has(ItemRegistry.PASSIONFRUIT.get())).save(pWriter);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.STRAWBERRY_SEEDS.get(), 3)).requires(ItemRegistry.STRAWBERRY.get()).unlockedBy("has_strawberry", has(ItemRegistry.STRAWBERRY.get())).save(pWriter);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.GINGER_ROOT_SLIP.get(), 3)).requires(ItemRegistry.GINGER.get()).unlockedBy("has_ginger", has(ItemRegistry.GINGER.get())).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.CABBAGE_SEEDS.get(), 2)).requires(ItemRegistry.CABBAGE.get()).unlockedBy("has_cabbage", has(ItemRegistry.CABBAGE.get())).save(pWriter);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, new ItemStack(ItemRegistry.STONE_SCYTHE.get(), 1))
                 .pattern(" ab")
@@ -675,5 +676,77 @@ public class FTFRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.FLOUR.get(), 2)).requires(Items.WHEAT).unlockedBy("has_wheat", has(Items.WHEAT)).save(pWriter);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.TOMATO_SOUP.get(), 1)).requires(ItemRegistry.TOMATO.get()).requires(Items.BOWL).unlockedBy("has_tomato", has(ItemRegistry.TOMATO.get())).save(pWriter);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.VEGETABLE_SOUP.get(), 1)).requires(FTFTags.VEGETABLES).requires(Items.BOWL).unlockedBy("has_vegetable", has(FTFTags.VEGETABLES)).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.SILK_STRING.get(), 1)).requires(ItemRegistry.UNWOVEN_SILK.get()).requires(Items.STICK).unlockedBy("has_unwoven_silk", has(ItemRegistry.UNWOVEN_SILK.get())).save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.SILK_HELMET.get(), 1))
+                .pattern("sss")
+                .pattern("s s")
+                .define('s', ItemRegistry.SILK_STRING.get())
+                .unlockedBy("has_silk", has(ItemRegistry.SILK_STRING.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.SILK_ROBE.get(), 1))
+                .pattern("s s")
+                .pattern("sss")
+                .pattern("sss")
+                .define('s', ItemRegistry.SILK_STRING.get())
+                .unlockedBy("has_silk", has(ItemRegistry.SILK_STRING.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.SILK_LEGGINGS.get(), 1))
+                .pattern("sss")
+                .pattern("s s")
+                .pattern("s s")
+                .define('s', ItemRegistry.SILK_STRING.get())
+                .unlockedBy("has_silk", has(ItemRegistry.SILK_STRING.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.SILK_BOOTS.get(), 1))
+                .pattern("s s")
+                .pattern("s s")
+                .define('s', ItemRegistry.SILK_STRING.get())
+                .unlockedBy("has_silk", has(ItemRegistry.SILK_STRING.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(BlockRegistry.SPINNING_WHEEL.get(), 1))
+                .pattern(" pp")
+                .pattern("tpt")
+                .pattern("sss")
+                .define('p', ItemTags.PLANKS)
+                .define('t', Items.STICK)
+                .define('s', ItemTags.WOODEN_SLABS)
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.BOUQUET.get(), 1)).requires(Items.STRING).requires(Items.PAPER).requires(FTFTags.FLOWERS).requires(FTFTags.FLOWERS).requires(FTFTags.FLOWERS).unlockedBy("has_flowers", has(FTFTags.FLOWERS)).save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_SEEDS.get(), 1)).requires(ItemRegistry.PINEAPPLE.get()).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_JUICE.get(), 1)).requires(ItemRegistry.PINEAPPLE.get()).requires(Items.GLASS_BOTTLE).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_CHUNKS.get(), 1)).requires(ItemRegistry.PINEAPPLE_BOTTOM.get()).requires(Items.STICK).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_SLICE.get(), 1)).requires(ItemRegistry.PINEAPPLE_BOTTOM.get()).requires(Items.FLINT).unlockedBy("has_pineapple", has(ItemRegistry.PINEAPPLE.get())).save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_BOTTOM.get(), 1))
+                .pattern(" a ")
+                .pattern(" b ")
+                .define('a', Items.FLINT)
+                .define('b', ItemRegistry.PINEAPPLE.get())
+                .unlockedBy("criteria", has(ItemRegistry.PINEAPPLE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.PINEAPPLE_TOP.get(), 1))
+                .pattern(" b ")
+                .pattern(" a ")
+                .define('a', Items.FLINT)
+                .define('b', ItemRegistry.PINEAPPLE.get())
+                .unlockedBy("criteria", has(ItemRegistry.PINEAPPLE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, new ItemStack(ItemRegistry.GOLDEN_PINEAPPLE.get(), 1))
+                .pattern("bbb")
+                .pattern("bab")
+                .pattern("bbb")
+                .define('b', Items.GOLD_BLOCK)
+                .define('a', ItemRegistry.PINEAPPLE.get())
+                .unlockedBy("criteria", has(ItemRegistry.PINEAPPLE.get()))
+                .save(pWriter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.CABBAGE_POTATO_SOUP.get(), 1)).requires(ItemRegistry.CABBAGE.get()).requires(Items.POTATO).requires(Items.BOWL).unlockedBy("has_cabbage", has(ItemRegistry.CABBAGE.get())).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.CABBAGE_SOUP.get(), 1)).requires(ItemRegistry.CABBAGE.get()).requires(Items.BOWL).unlockedBy("has_cabbage", has(ItemRegistry.CABBAGE.get())).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.BEEF_STEW.get(), 1)).requires(Items.BEEF).requires(Items.BOWL).unlockedBy("has_beef", has(Items.BEEF)).save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, new ItemStack(ItemRegistry.APPLE_CABBAGE_STEW.get(), 1)).requires(ItemRegistry.CABBAGE.get()).requires(Items.APPLE).requires(Items.BOWL).unlockedBy("has_cabbage", has(ItemRegistry.CABBAGE.get())).save(pWriter);
     }
 }

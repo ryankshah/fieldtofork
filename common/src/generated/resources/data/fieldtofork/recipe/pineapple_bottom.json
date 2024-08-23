@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:flint"
+    },
+    "b": {
+      "item": "fieldtofork:pineapple"
+    }
+  },
+  "pattern": [
+    " a ",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:pineapple_bottom"
+  }
+}

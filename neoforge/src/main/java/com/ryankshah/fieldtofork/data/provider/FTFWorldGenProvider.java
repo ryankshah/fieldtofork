@@ -3,21 +3,17 @@ package com.ryankshah.fieldtofork.data.provider;
 import com.ryankshah.fieldtofork.Constants;
 import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.registry.BlockRegistry;
+import com.ryankshah.fieldtofork.registry.FTFTags;
 import com.ryankshah.fieldtofork.registry.WorldGenRegistry;
 import com.ryankshah.fieldtofork.worldgen.CommonSpawning;
-import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.Vec3i;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.placement.CavePlacements;
-import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
-import net.minecraft.data.worldgen.placement.OrePlacements;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.data.worldgen.placement.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.random.SimpleWeightedRandomList;
@@ -34,12 +30,17 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
@@ -55,8 +56,8 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, FTFWorldGenProvider::configuredFeature)
             .add(Registries.PLACED_FEATURE, FTFWorldGenProvider::placedFeatures)
-            .add(Registries.BIOME, FTFWorldGenProvider::biomes);
-//            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FTFWorldGenProvider::spawns);
+            .add(Registries.BIOME, FTFWorldGenProvider::biomes)
+            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, FTFWorldGenProvider::spawns);
 
     private static final ResourceKey<BiomeModifier> OVERWORLD = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overworld_ftf_spawns"));
 
@@ -64,11 +65,11 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
         super(output, provider, BUILDER, Set.of(Constants.MOD_ID));
     }
 
-//    public static void spawns(BootstrapContext<BiomeModifier> context) {
-//        context.register(OVERWORLD,
-//                new BiomeModifiers.AddSpawnsBiomeModifier(context.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_OVERWORLD), CommonSpawning.OVERWORLD_SPAWNS)
-//        );
-//    }
+    public static void spawns(BootstrapContext<BiomeModifier> context) {
+        context.register(OVERWORLD,
+                new BiomeModifiers.AddSpawnsBiomeModifier(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(WorldGenRegistry.MULBERRY_GROVE)), CommonSpawning.MULBERRY_GROVE_SPAWNS)
+        );
+    }
 
     public static void configuredFeature(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         context.register(WorldGenRegistry.PALM_TREE_CF_RK, new ConfiguredFeature<>(
@@ -170,6 +171,25 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         new ThreeLayersFeatureSize(4, 4, 1, 1, 2, OptionalInt.of(3))
                 ).build()
         ));
+
+        context.register(WorldGenRegistry.FLOWERS_CF_RK, new ConfiguredFeature<>(
+                WorldGenRegistry.FLOWERS_F.get(),
+                new RandomPatchConfiguration(32, 3, 3,
+                PlacementUtils.onlyWhenEmpty(
+                        Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(
+                                new NoiseProvider(
+                                        2345L,
+                                        new NormalNoise.NoiseParameters(0, 1.0),
+                                        0.020833334F,
+                                        List.of(
+                                                BlockRegistry.IRIS_FLOWER.get().defaultBlockState(),
+                                                BlockRegistry.CROCUS_VERNUS.get().defaultBlockState(),
+                                                BlockRegistry.CROCUS_FLAVUS.get().defaultBlockState(),
+                                                BlockRegistry.DAFFODIL.get().defaultBlockState()
+                                        )
+                                )
+                        )))));
     }
 
     public static void placedFeatures(BootstrapContext<PlacedFeature> context) {
@@ -288,8 +308,8 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
         context.register(WorldGenRegistry.MULBERRY_TREE_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.MULBERRY_TREE_CF_RK).get(),
                         List.of(
                                 CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
-                                        .add(ConstantInt.of(2), 1)
-                                        .add(ConstantInt.of(2), 1)
+                                        .add(ConstantInt.of(3), 3)
+                                        .add(ConstantInt.of(4), 7)
                                         .build())),
                                 InSquarePlacement.spread(),
                                 SurfaceWaterDepthFilter.forMaxDepth(0),
@@ -299,15 +319,24 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         )
                 )
         );
+
+        context.register(WorldGenRegistry.FLOWERS_RK, new PlacedFeature(context.lookup(Registries.CONFIGURED_FEATURE).get(WorldGenRegistry.FLOWERS_CF_RK).get(),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(24),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()
+                )
+        ));
     }
 
     public static void biomes(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder pbBuilder = new MobSpawnSettings.Builder();
-        context.register(FieldToForkCommon.PALM_BEACH,
+        context.register(WorldGenRegistry.PALM_BEACH,
                 new Biome.BiomeBuilder()
                         .specialEffects(
                                 new BiomeSpecialEffects.Builder()
-                                        .skyColor(7254527)
+                                        .skyColor(7907327)
                                         .fogColor(12638463)
                                         .waterColor(4159204)
                                         .waterFogColor(329011)
@@ -327,7 +356,7 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
         );
 
         MobSpawnSettings.Builder ffBuilder = new MobSpawnSettings.Builder();
-        context.register(FieldToForkCommon.FRUIT_FOREST,
+        context.register(WorldGenRegistry.FRUIT_FOREST,
                 new Biome.BiomeBuilder()
                         .specialEffects(
                                 new BiomeSpecialEffects.Builder()
@@ -354,13 +383,14 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.ORANGE_TREE_RK).get())
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.PEAR_TREE_RK).get())
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.POMEGRANATE_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.FLOWERS_RK).get())
                                         .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
                         ).build()
         );
 
         MobSpawnSettings.Builder mbBuilder = new MobSpawnSettings.Builder();
         CommonSpawning.MULBERRY_GROVE_SPAWNS.forEach(spawnerData -> mbBuilder.addSpawn(MobCategory.CREATURE, spawnerData)); //mbBuilder.addSpawn(MobCategory.CREATURE, CommonSpawning.MULBERRY_GROVE_SPAWNS.);
-        context.register(FieldToForkCommon.MULBERRY_GROVE,
+        context.register(WorldGenRegistry.MULBERRY_GROVE,
                 new Biome.BiomeBuilder()
                         .specialEffects(
                                 new BiomeSpecialEffects.Builder()
@@ -381,6 +411,7 @@ public class FTFWorldGenProvider extends DatapackBuiltinEntriesProvider
                         .generationSettings(
                                 baseSettings(context)
                                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.MULBERRY_TREE_RK).get())
+                                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, context.lookup(Registries.PLACED_FEATURE).get(WorldGenRegistry.FLOWERS_RK).get())
                                         .addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, context.lookup(Registries.PLACED_FEATURE).get(MiscOverworldPlacements.FREEZE_TOP_LAYER).get()).build()
                         ).build()
         );

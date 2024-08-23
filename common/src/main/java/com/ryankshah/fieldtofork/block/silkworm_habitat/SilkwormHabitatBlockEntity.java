@@ -205,6 +205,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
 
     public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, SilkwormHabitatBlockEntity pBlockEntity) {
         boolean flag = pBlockEntity.isLit();
+
         boolean flag1 = false;
         if (pBlockEntity.isLit()) {
             --pBlockEntity.producingTime;
@@ -214,6 +215,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
         ItemStack itemstack1 = (ItemStack)pBlockEntity.items.get(0);
         boolean flag2 = !itemstack1.isEmpty();
         boolean flag3 = !itemstack.isEmpty();
+
         if (pBlockEntity.isLit() || flag3 && flag2) {
             RecipeHolder recipeholder;
             if (flag2) {
@@ -260,6 +262,7 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
         if (flag != pBlockEntity.isLit()) {
             flag1 = true;
             pState = (BlockState)pState.setValue(SilkwormHabitat.PRODUCING, pBlockEntity.isLit());
+            // TODO: Check if this means its off..?
             pLevel.setBlock(pPos, pState, 3);
         }
 
@@ -370,6 +373,9 @@ public class SilkwormHabitatBlockEntity extends BaseContainerBlockEntity impleme
             this.producingTotalTime = getTotalCookTime(this.level, this);
             this.producingProgress = 0;
             BlockState blockState = getBlockState();
+            blockState.setValue(SilkwormHabitat.HAS_WORMS, true);
+            blockState.setValue(SilkwormHabitat.HAS_LEAVES, true);
+            this.level.setBlock(getBlockPos(), blockState, 3);
             this.level.sendBlockUpdated(this.getBlockPos(), blockState, blockState, 3);
             setChanged(this.getLevel(), this.getBlockPos(), blockState);
         }

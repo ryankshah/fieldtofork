@@ -6,13 +6,22 @@ import com.ryankshah.fieldtofork.datacomponent.WateringCanFillLevelDataComponent
 import com.ryankshah.fieldtofork.item.Scythe;
 import com.ryankshah.fieldtofork.item.WateringCan;
 import com.ryankshah.fieldtofork.registration.RegistrationProvider;
+import com.ryankshah.fieldtofork.registration.RegistryObject;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 
+import java.util.EnumMap;
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -38,6 +47,7 @@ public class ItemRegistry
     public static void init() {}
 
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
+    public static final RegistrationProvider<ArmorMaterial> ARMOR_MATERIALS = RegistrationProvider.get(Registries.ARMOR_MATERIAL, Constants.MOD_ID);
 
     //Fruits
     public static final Supplier<Item> BANANAS = registerItem("bananas", () -> new Item(new Item.Properties()));//.food(new FoodProperties.Builder().nutrition(4).saturationModifier(1.4F).build())));
@@ -73,6 +83,14 @@ public class ItemRegistry
     public static final Supplier<Item> STRAWBERRY_SEEDS = registerItem("strawberry_seeds", () -> new ItemNameBlockItem(BlockRegistry.STRAWBERRY_CROP.get(), new Item.Properties()));
     public static final Supplier<Item> STRAWBERRY = registerItem("strawberry", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.9F).build())));
     public static final Supplier<Item> MULBERRY = registerItem("mulberry", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.9F).build())));
+    public static final Supplier<Item> PINEAPPLE = registerItem("pineapple", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> PINEAPPLE_SEEDS = registerItem("pineapple_seeds", () -> new ItemNameBlockItem(BlockRegistry.PINEAPPLE_BLOCK.get(), new Item.Properties()));
+    public static final Supplier<Item> PINEAPPLE_TOP = registerItem("pineapple_top", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
+    public static final Supplier<Item> PINEAPPLE_BOTTOM = registerItem("pineapple_bottom", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
+    public static final Supplier<Item> PINEAPPLE_CHUNKS = registerItem("pineapple_chunks", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
+    public static final Supplier<Item> PINEAPPLE_SLICE = registerItem("pineapple_slice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build())));
+    public static final Supplier<Item> PINEAPPLE_JUICE = registerItem("pineapple_juice", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.3F).build())));
+    public static final Supplier<Item> GOLDEN_PINEAPPLE = registerItem("golden_pineapple", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(1.8F).effect(new MobEffectInstance(MobEffects.REGENERATION, 100, 1), 1.0F).effect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build())));
 
     //Vegetables
     public static final Supplier<Item> ASPARAGUS = registerItem("asparagus", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(1.1F).build())));
@@ -90,6 +108,8 @@ public class ItemRegistry
     public static final Supplier<Item> GARLIC = registerItem("garlic", () -> new ItemNameBlockItem(BlockRegistry.GARLIC_CROP.get(), new Item.Properties()));
     public static final Supplier<Item> GINGER = registerItem("ginger", () -> new ItemNameBlockItem(BlockRegistry.GINGER_CROP.get(), new Item.Properties()));
     public static final Supplier<Item> GINGER_ROOT_SLIP = registerItem("ginger_root_slip", () -> new ItemNameBlockItem(BlockRegistry.GINGER_CROP.get(), new Item.Properties()));
+    public static final Supplier<Item> CABBAGE = registerItem("cabbage", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> CABBAGE_SEEDS = registerItem("cabbage_seeds", () -> new ItemNameBlockItem(BlockRegistry.CABBAGE_CROP.get(), new Item.Properties()));
 
     //Tools
     public static final Supplier<Scythe> STONE_SCYTHE = registerItem("stone_scythe", () -> new Scythe(Tiers.STONE, new Item.Properties()));
@@ -108,6 +128,7 @@ public class ItemRegistry
     public static final Supplier<Item> HORSE_HAUNCH = registerItem("horse_haunch", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
     public static final Supplier<Item> SALMON_ROE = registerItem("salmon_roe", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.4F).build())));
     public static final Supplier<Item> SILKWORM_EGGS = registerItem("silkworm_eggs", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> CAMEL_MILK_BUCKET = registerItem("camel_milk_bucket", () -> new MilkBucketItem((new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 
     // Foods
     public static final Supplier<Item> FLOUR = registerItem("flour", () -> new Item(new Item.Properties()));
@@ -118,8 +139,33 @@ public class ItemRegistry
     public static final Supplier<Item> DURUM_WHEAT_SEEDS = registerItem("durum_wheat_seeds", () -> new ItemNameBlockItem(BlockRegistry.DURUM_WHEAT_CROP.get(), new Item.Properties()));
     public static final Supplier<Item> DURUM_WHEAT = registerItem("durum_wheat", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> DURUM_WHEAT_FLOUR = registerItem("durum_wheat_flour", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> SHEAF_OF_RICE = registerItem("sheaf_of_rice", () -> new ItemNameBlockItem(BlockRegistry.RICE_CROP.get(), new Item.Properties()));
+    public static final Supplier<Item> RICE = registerItem("rice", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> COOKED_RICE = registerItem("cooked_rice", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> TOMATO_SOUP = registerItem("tomato_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build())));
     public static final Supplier<Item> VEGETABLE_SOUP = registerItem("vegetable_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build())));
+    public static final Supplier<Item> APPLE_CABBAGE_STEW = registerItem("apple_cabbage_stew", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build())));
+    public static final Supplier<Item> CABBAGE_SOUP = registerItem("cabbage_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build())));
+    public static final Supplier<Item> CABBAGE_POTATO_SOUP = registerItem("cabbage_potato_soup", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build())));
+    public static final Supplier<Item> BEEF_STEW = registerItem("beef_stew", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build())));
+
+
+    public static final Supplier<Item> BOUQUET = registerItem("bouquet", () -> new Item(new Item.Properties()));
+
+    //Armors
+    public static final RegistryObject<ArmorMaterial, ArmorMaterial> SILK_MATERIAL = ARMOR_MATERIALS.register("silk", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), p_266652_ -> {
+        p_266652_.put(ArmorItem.Type.BOOTS, 2);
+        p_266652_.put(ArmorItem.Type.LEGGINGS, 4);
+        p_266652_.put(ArmorItem.Type.CHESTPLATE, 5);
+        p_266652_.put(ArmorItem.Type.HELMET, 2);
+    }), 15, SoundEvents.ARMOR_EQUIP_GENERIC,
+            () -> Ingredient.of(ItemRegistry.SILK_STRING.get()),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "silk"))), 0.5F, 0.125F));
+
+    public static final Supplier<ArmorItem> SILK_HELMET = ITEMS.register("silk_helmet", () -> new ArmorItem(SILK_MATERIAL.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
+    public static final Supplier<ArmorItem> SILK_ROBE = ITEMS.register("silk_robe", () -> new ArmorItem(SILK_MATERIAL.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
+    public static final Supplier<ArmorItem> SILK_LEGGINGS = ITEMS.register("silk_leggings", () -> new ArmorItem(SILK_MATERIAL.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
+    public static final Supplier<ArmorItem> SILK_BOOTS = ITEMS.register("silk_boots", () -> new ArmorItem(SILK_MATERIAL.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
 
 
 //    private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
@@ -153,6 +199,8 @@ public class ItemRegistry
                 entries.accept(ItemRegistry.YELLOW_PEPPER.get());
                 entries.accept(ItemRegistry.TOMATO.get());
                 entries.accept(ItemRegistry.STRAWBERRY.get());
+                entries.accept(ItemRegistry.PINEAPPLE.get());
+                entries.accept(ItemRegistry.GOLDEN_PINEAPPLE.get());
             })
             .build());
 
@@ -168,6 +216,7 @@ public class ItemRegistry
                 entries.accept(ItemRegistry.ZUCCHINI.get());
                 entries.accept(ItemRegistry.GARLIC.get());
                 entries.accept(ItemRegistry.GINGER.get());
+                entries.accept(ItemRegistry.CABBAGE.get());
             })
             .build());
 
@@ -197,6 +246,7 @@ public class ItemRegistry
                 entries.accept(ItemRegistry.STRAWBERRY_SEEDS.get());
                 entries.accept(ItemRegistry.DURUM_WHEAT_SEEDS.get());
                 entries.accept(ItemRegistry.GINGER_ROOT_SLIP.get());
+                entries.accept(ItemRegistry.CABBAGE_SEEDS.get());
             })
             .build());
 
@@ -210,7 +260,7 @@ public class ItemRegistry
                 entries.accept(ItemRegistry.HORSE_HAUNCH.get());
                 entries.accept(ItemRegistry.SALMON_ROE.get());
                 entries.accept(ItemRegistry.GOAT_MILK_BUCKET.get());
-                entries.accept(ItemRegistry.SILKWORM_EGGS.get());
+                entries.accept(ItemRegistry.CAMEL_MILK_BUCKET.get());
             })
             .build());
 
@@ -219,12 +269,24 @@ public class ItemRegistry
             .icon(() -> new ItemStack(ItemRegistry.TOMATO_SOUP.get()))
             .displayItems((enabledFeatures, entries) -> {
                 entries.accept(ItemRegistry.FLOUR.get());
-                entries.accept(ItemRegistry.SALT.get());
-                entries.accept(ItemRegistry.BUTTER.get());
-                entries.accept(ItemRegistry.TOMATO_SOUP.get());
-                entries.accept(ItemRegistry.VEGETABLE_SOUP.get());
                 entries.accept(ItemRegistry.DURUM_WHEAT.get());
                 entries.accept(ItemRegistry.DURUM_WHEAT_FLOUR.get());
+                entries.accept(ItemRegistry.SHEAF_OF_RICE.get());
+                entries.accept(ItemRegistry.SALT.get());
+                entries.accept(ItemRegistry.BUTTER.get());
+                entries.accept(ItemRegistry.RICE.get());
+                entries.accept(ItemRegistry.COOKED_RICE.get());
+                entries.accept(ItemRegistry.TOMATO_SOUP.get());
+                entries.accept(ItemRegistry.VEGETABLE_SOUP.get());
+                entries.accept(ItemRegistry.APPLE_CABBAGE_STEW.get());
+                entries.accept(ItemRegistry.CABBAGE_SOUP.get());
+                entries.accept(ItemRegistry.CABBAGE_POTATO_SOUP.get());
+                entries.accept(ItemRegistry.BEEF_STEW.get());
+                entries.accept(ItemRegistry.PINEAPPLE_TOP.get());
+                entries.accept(ItemRegistry.PINEAPPLE_BOTTOM.get());
+                entries.accept(ItemRegistry.PINEAPPLE_CHUNKS.get());
+                entries.accept(ItemRegistry.PINEAPPLE_SLICE.get());
+                entries.accept(ItemRegistry.PINEAPPLE_JUICE.get());
             })
             .build());
 
@@ -239,14 +301,25 @@ public class ItemRegistry
                 entries.accept(ItemRegistry.NETHERITE_SCYTHE.get());
                 entries.accept(ItemRegistry.WATERING_CAN.get());
                 entries.accept(ItemRegistry.PITCHFORK.get());
-                entries.accept(ItemRegistry.UNWOVEN_SILK.get());
             }).build());
 
     public static final Supplier<CreativeModeTab> MATERIALS_TAB = FieldToForkCommon.COMMON_PLATFORM.registerCreativeModeTab("fieldtofork_materials", () -> FieldToForkCommon.COMMON_PLATFORM.newCreativeTabBuilder()
             .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".materials"))
             .icon(() -> new ItemStack(ItemRegistry.SILK_STRING.get()))
             .displayItems((enabledFeatures, entries) -> {
+                entries.accept(ItemRegistry.SILKWORM_EGGS.get());
                 entries.accept(ItemRegistry.UNWOVEN_SILK.get());
                 entries.accept(ItemRegistry.SILK_STRING.get());
+            }).build());
+
+    public static final Supplier<CreativeModeTab> CLOTHING_TAB = FieldToForkCommon.COMMON_PLATFORM.registerCreativeModeTab("fieldtofork_clothing", () -> FieldToForkCommon.COMMON_PLATFORM.newCreativeTabBuilder()
+            .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".clothing"))
+            .icon(() -> new ItemStack(ItemRegistry.SILK_ROBE.get()))
+            .displayItems((enabledFeatures, entries) -> {
+                entries.accept(ItemRegistry.SILK_HELMET.get());
+                entries.accept(ItemRegistry.SILK_ROBE.get());
+                entries.accept(ItemRegistry.SILK_LEGGINGS.get());
+                entries.accept(ItemRegistry.SILK_BOOTS.get());
+                entries.accept(ItemRegistry.BOUQUET.get());
             }).build());
 }

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "tag": "fieldtofork:flowers"
+    },
+    {
+      "tag": "fieldtofork:flowers"
+    },
+    {
+      "tag": "fieldtofork:flowers"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:bouquet"
+  }
+}

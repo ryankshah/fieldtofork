@@ -69,5 +69,6 @@
 				"down": {"uv": [6, 0, 4, 2], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"gui_light": "front"
 }

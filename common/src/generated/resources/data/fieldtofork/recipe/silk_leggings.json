@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "s": {
+      "item": "fieldtofork:silk_string"
+    }
+  },
+  "pattern": [
+    "sss",
+    "s s",
+    "s s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fieldtofork:silk_leggings"
+  }
+}

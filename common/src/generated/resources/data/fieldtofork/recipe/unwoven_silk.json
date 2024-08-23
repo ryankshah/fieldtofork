@@ -1,8 +1,8 @@
 {
   "type": "fieldtofork:silkworm_habitat",
   "category": "misc",
-  "cookingtime": 200,
-  "experience": 0.35,
+  "cookingtime": 600,
+  "experience": 0.25,
   "group": "habitat",
   "ingredient": {
     "item": "fieldtofork:mulberry_leaves"

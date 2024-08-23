@@ -5,6 +5,7 @@ import com.ryankshah.fieldtofork.FieldToForkCommon;
 import com.ryankshah.fieldtofork.block.*;
 import com.ryankshah.fieldtofork.block.churn.ChurnBlock;
 import com.ryankshah.fieldtofork.block.crop.FTFCropBlock;
+import com.ryankshah.fieldtofork.block.crop.PineappleBlock;
 import com.ryankshah.fieldtofork.block.crop.TwoHighCropBlock;
 import com.ryankshah.fieldtofork.block.sign.*;
 import com.ryankshah.fieldtofork.block.silkworm_habitat.SilkwormHabitat;
@@ -12,6 +13,7 @@ import com.ryankshah.fieldtofork.registration.RegistrationProvider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
@@ -465,6 +467,13 @@ public class BlockRegistry
             .instabreak()
             .sound(SoundType.CROP)
             .pushReaction(PushReaction.DESTROY), ItemRegistry.DURUM_WHEAT_SEEDS));
+    public static final Supplier<FTFCropBlock> RICE_CROP = registerBlock("rice", () -> new FTFCropBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.PLANT)
+            .noCollission()
+            .randomTicks()
+            .instabreak()
+            .sound(SoundType.CROP)
+            .pushReaction(PushReaction.DESTROY), ItemRegistry.SHEAF_OF_RICE));
     public static final Supplier<FTFCropBlock> GINGER_CROP = registerBlock("ginger", () -> new FTFCropBlock(BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT)
             .noCollission()
@@ -472,6 +481,14 @@ public class BlockRegistry
             .instabreak()
             .sound(SoundType.CROP)
             .pushReaction(PushReaction.DESTROY), ItemRegistry.GINGER_ROOT_SLIP));
+    public static final Supplier<PineappleBlock> PINEAPPLE_BLOCK = registerBlock("pineapple_block", PineappleBlock::new);
+    public static final Supplier<FTFCropBlock> CABBAGE_CROP = registerBlock("cabbage", () -> new FTFCropBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.PLANT)
+            .noCollission()
+            .randomTicks()
+            .instabreak()
+            .sound(SoundType.CROP)
+            .pushReaction(PushReaction.DESTROY), ItemRegistry.CABBAGE_SEEDS));
 
     public static final Supplier<ScarecrowBlock> VILLAGER_SCARECROW_BLOCK = registerBlock("villager_scarecrow", () -> new ScarecrowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noOcclusion()));
     public static final Supplier<BlockItem> VILLAGER_SCARECROW_BLOCK_ITEM = registerBlockItem("villager_scarecrow", () -> new BlockItem(VILLAGER_SCARECROW_BLOCK.get(), new Item.Properties()));
@@ -481,6 +498,141 @@ public class BlockRegistry
 
     public static final Supplier<SilkwormHabitat> SILKWORM_HABITAT = registerBlock("silkworm_habitat", () -> new SilkwormHabitat(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noOcclusion()));
     public static final Supplier<BlockItem> SILKWORM_HABITAT_ITEM = registerBlockItem("silkworm_habitat", () -> new BlockItem(SILKWORM_HABITAT.get(), new Item.Properties()));
+
+    public static final Supplier<SpinningWheelBlock> SPINNING_WHEEL = registerBlock("spinning_wheel", () -> new SpinningWheelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final Supplier<BlockItem> SPINNING_WHEEL_ITEM = registerBlockItem("spinning_wheel", () -> new BlockItem(SPINNING_WHEEL.get(), new Item.Properties()));
+
+
+    public static final Supplier<Block> IRIS_FLOWER = BLOCKS.register("iris_flower",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> IRIS_FLOWER_BLOCK_ITEM = registerBlockItem("iris_flower", () -> new BlockItem(IRIS_FLOWER.get(), new Item.Properties()));
+    public static final Supplier<Block> CROCUS_VERNUS = BLOCKS.register("crocus_vernus",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> CROCUS_VERNUS_BLOCK_ITEM = registerBlockItem("crocus_vernus", () -> new BlockItem(CROCUS_VERNUS.get(), new Item.Properties()));
+    public static final Supplier<Block> CROCUS_FLAVUS = BLOCKS.register("crocus_flavus",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> CROCUS_FLAVUS_BLOCK_ITEM = registerBlockItem("crocus_flavus", () -> new BlockItem(CROCUS_FLAVUS.get(), new Item.Properties()));
+    public static final Supplier<Block> DAFFODIL = BLOCKS.register("daffodil",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> DAFFODIL_BLOCK_ITEM = registerBlockItem("daffodil", () -> new BlockItem(DAFFODIL.get(), new Item.Properties()));
+    public static final Supplier<Block> BELLFLOWER = BLOCKS.register("bellflower",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> BELLFLOWER_BLOCK_ITEM = registerBlockItem("bellflower", () -> new BlockItem(BELLFLOWER.get(), new Item.Properties()));
+    public static final Supplier<Block> GERANIUM = BLOCKS.register("geranium",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> GERANIUM_BLOCK_ITEM = registerBlockItem("geranium", () -> new BlockItem(GERANIUM.get(), new Item.Properties()));
+    public static final Supplier<Block> WHITE_ROSE = BLOCKS.register("white_rose",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> WHITE_ROSE_BLOCK_ITEM = registerBlockItem("white_rose", () -> new BlockItem(WHITE_ROSE.get(), new Item.Properties()));
+    public static final Supplier<Block> MARIGOLD = BLOCKS.register("marigold",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> MARIGOLD_BLOCK_ITEM = registerBlockItem("marigold", () -> new BlockItem(MARIGOLD.get(), new Item.Properties()));
+    public static final Supplier<Block> THISTLE = BLOCKS.register("thistle",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> THISTLE_BLOCK_ITEM = registerBlockItem("thistle", () -> new BlockItem(THISTLE.get(), new Item.Properties()));
+    public static final Supplier<Block> CHRYSANTHEMUM = BLOCKS.register("chrysanthemum",
+            () -> new FlowerBlock(
+                    MobEffects.SATURATION,
+                    7,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.PLANT)
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.GRASS)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final Supplier<BlockItem> CHRYSANTHEMUM_BLOCK_ITEM = registerBlockItem("chrysanthemum", () -> new BlockItem(CHRYSANTHEMUM.get(), new Item.Properties()));
 
 
 //    private static <T extends BlockItem> Supplier<T> registerBlockItem(String id, Supplier<T> blockitem) {
@@ -507,6 +659,18 @@ public class BlockRegistry
                 entries.accept(new ItemStack(BlockRegistry.VILLAGER_SCARECROW_BLOCK.get()));
                 entries.accept(new ItemStack(BlockRegistry.CHURN.get()));
                 entries.accept(new ItemStack(BlockRegistry.SILKWORM_HABITAT.get()));
+                entries.accept(new ItemStack(BlockRegistry.SPINNING_WHEEL.get()));
+
+                entries.accept(new ItemStack(BlockRegistry.IRIS_FLOWER.get()));
+                entries.accept(new ItemStack(BlockRegistry.CROCUS_VERNUS.get()));
+                entries.accept(new ItemStack(BlockRegistry.CROCUS_FLAVUS.get()));
+                entries.accept(new ItemStack(BlockRegistry.DAFFODIL.get()));
+                entries.accept(new ItemStack(BlockRegistry.BELLFLOWER.get()));
+                entries.accept(new ItemStack(BlockRegistry.GERANIUM.get()));
+                entries.accept(new ItemStack(BlockRegistry.WHITE_ROSE.get()));
+                entries.accept(new ItemStack(BlockRegistry.MARIGOLD.get()));
+                entries.accept(new ItemStack(BlockRegistry.THISTLE.get()));
+                entries.accept(new ItemStack(BlockRegistry.CHRYSANTHEMUM.get()));
 
                 entries.accept(new ItemStack(BlockRegistry.PALM_LOG.get()));
                 entries.accept(new ItemStack(BlockRegistry.PALM_PLANKS.get()));
